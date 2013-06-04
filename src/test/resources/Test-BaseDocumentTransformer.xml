@@ -72,6 +72,14 @@
     </bean>
     -->
     
+    <bean name="StaticFHIRResource" class="org.socraticgrid.documenttransformer.StaticResource">
+        <property name="staticResource">
+            <bean class="org.springframework.core.io.ClassPathResource">
+                <constructor-arg value="FHIR_Reaction_AtomBundle.xml"/>
+            </bean>
+        </property>
+    </bean>
+        
     <bean name="MDWS2FHIR_Meds" class="org.socraticgrid.documenttransformer.XSLTTransformStep">
         <property name="xsltStyleSheet">
             <bean class="org.springframework.core.io.ClassPathResource">
@@ -114,6 +122,22 @@
             </bean>
         </property>
     </bean>
+
+    <bean name="Allergies_JSON" class="org.socraticgrid.documenttransformer.TransformPipeline">
+        <property name="transformChain">
+            <list>
+                <ref bean="StaticFHIRResource" />
+                <ref bean="XML2JSONXform" />
+            </list>
+        </property>
+    </bean>
+    <bean name="Allergies_FHIR" class="org.socraticgrid.documenttransformer.TransformPipeline">
+        <property name="transformChain">
+            <list>
+                <ref bean="StaticFHIRResource" />
+            </list>
+        </property>
+    </bean>
     
     <bean name="Demographics" class="org.socraticgrid.documenttransformer.TransformPipeline">
         <property name="transformChain">
@@ -153,6 +177,8 @@
                 <entry key="Medications" value-ref="Medications"/>
                 <entry key="Problems" value-ref="Problems"/>
                 <entry key="Demographics" value-ref="Demographics"/>
+                <entry key="Allergies_FHIR" value-ref="Allergies_FHIR"/>
+                <entry key="Allergies_JSON" value-ref="Allergies_JSON"/>
             </map>
         </property>
     </bean>

@@ -48,7 +48,7 @@ public class TransformerTest extends TestCase
      * Test of transform method, of class Transformer.
      */
     @Test
-    public void testMultipathTransform() throws Exception
+    public void testStaticTransform() throws Exception
     {
         System.setProperty("jaxp.debug","1");
         System.out.println("transform");
@@ -60,10 +60,30 @@ public class TransformerTest extends TestCase
         String result = instance.transform(pipeline, inStr);
         inStr = res.getInputStream();
         String result2 = instance.transform(pipeline2, inStr);
-        //System.out.println("--- FHIR to ---");
-        //System.out.println(result2);
+        System.out.println("--- FHIR to ---");
+        System.out.println(result2);
         System.out.println("--- Transforms to ---");
         System.out.println(result);
+        //assertEquals(result,result2);
+    }
+    
+        @Test
+    public void testMultipathTransform() throws Exception
+    {
+        System.setProperty("jaxp.debug","1");
+        System.out.println("transform");
+        String pipeline = "Allergies_FHIR";
+        String pipeline2 = "Allergies_JSON";
+        Resource res = new ClassPathResource("PatientDataRequest_meds_10013.xml");
+        InputStream inStr = res.getInputStream();
+    
+        String result = instance.transform(pipeline, inStr);
+        inStr = res.getInputStream();
+        String result2 = instance.transform(pipeline2, inStr);
+        System.out.println("--- FHIR to ---");
+        System.out.println(result);
+        System.out.println("--- Transforms to ---");
+        System.out.println(result2);
         //assertEquals(result,result2);
     }
 }
