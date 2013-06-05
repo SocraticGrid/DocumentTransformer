@@ -48,7 +48,7 @@ public class TransformerTest extends TestCase
      * Test of transform method, of class Transformer.
      */
     @Test
-    public void testStaticTransform() throws Exception
+    public void testMultipathTransform() throws Exception
     {
         System.setProperty("jaxp.debug","1");
         System.out.println("transform");
@@ -67,8 +67,8 @@ public class TransformerTest extends TestCase
         //assertEquals(result,result2);
     }
     
-        @Test
-    public void testMultipathTransform() throws Exception
+    @Test
+    public void  testStaticTransform() throws Exception
     {
         System.setProperty("jaxp.debug","1");
         System.out.println("transform");
