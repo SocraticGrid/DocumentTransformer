@@ -53,4 +53,27 @@ public class Transformer
    
         return out;
     }
+    
+    public InputStream transformAsStream(String pipeline, InputStream inStr)
+    {
+        InputStream out = null;
+        if (transformPipeline.containsKey(pipeline))
+        {
+            out = transformPipeline.get(pipeline).transformAsInputStream(inStr);
+        }
+   
+        return out;
+    }
+    
+    public InputStream transformAsStream(String pipeline, InputStream inStr, Properties props)
+    {
+        InputStream out = null;
+        if (transformPipeline.containsKey(pipeline))
+        {
+            out = transformPipeline.get(pipeline).transformAsInputStream(inStr);
+        }
+   
+        return out;
+    }
+    
 }

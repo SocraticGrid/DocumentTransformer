@@ -38,10 +38,21 @@ public class TransformPipeline
     {
         this.transformChain = transformChain;
     }
-
-    public String transform(InputStream inStr)
+    
+    public InputStream transformAsInputStream(InputStream inStr)
     {
-
+        ByteArrayOutputStream outResultStream = this.internalTransform(inStr);
+        return (outResultStream == null) ? null : new ByteArrayInputStream(outResultStream.toByteArray());
+    }
+    public InputStream transformAsInputStream(InputStream inStr,Properties props)
+    {
+        ByteArrayOutputStream outResultStream = this.internalTransform(inStr,props);
+        return (outResultStream == null) ? null : new ByteArrayInputStream(outResultStream.toByteArray());
+        
+    }
+    
+    protected ByteArrayOutputStream internalTransform(InputStream inStr)
+    {
         StreamResult result = null;
         ByteArrayOutputStream outResultStream = null;
         if (transformChain != null)
@@ -83,10 +94,11 @@ public class TransformPipeline
             }
         }
 
-        return (outResultStream == null) ? "" : outResultStream.toString();
-    }
+        return outResultStream;
+                
+    }      
     
-      public String transform(InputStream inStr,Properties props)
+    protected ByteArrayOutputStream internalTransform(InputStream inStr,Properties props)
     {
 
         StreamResult result = null;
@@ -130,6 +142,19 @@ public class TransformPipeline
             }
         }
 
+        return outResultStream;
+    }
+    
+    public String transform(InputStream inStr)
+    {
+        ByteArrayOutputStream outResultStream = this.internalTransform(inStr);
         return (outResultStream == null) ? "" : outResultStream.toString();
+    }
+    
+    public String transform(InputStream inStr,Properties props)
+    {
+        ByteArrayOutputStream outResultStream = this.internalTransform(inStr,props);
+        return (outResultStream == null) ? "" : outResultStream.toString();
+        
     }
 }
