@@ -17,6 +17,7 @@ import javax.xml.transform.stream.StreamSource;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import org.socraticgrid.documenttransformer.interfaces.CumulativeTransformStep;
 
 import org.springframework.core.io.Resource;
 
@@ -24,13 +25,34 @@ import org.springframework.core.io.Resource;
  *
  * @author Jerry Goodnough
  */
-public class XSLTTransformStep implements TransformStep
+public class CumulativeXSLTTransformStep implements CumulativeTransformStep
 {
 
  
     private HashMap<String, Object> styleSheetParameters = null;
     private Transformer tx;
     
+    private String sourceDocumentName = "source";
+
+    /**
+     * Get the value of sourceDocumentName
+     *
+     * @return the value of sourceDocumentName
+     */
+    public String getSourceDocumentName()
+    {
+        return sourceDocumentName;
+    }
+
+    /**
+     * Set the value of sourceDocumentName
+     *
+     * @param sourceDocumentName new value of sourceDocumentName
+     */
+    public void setSourceDocumentName(String sourceDocumentName)
+    {
+        this.sourceDocumentName = sourceDocumentName;
+    }
 
     
     private Resource xsltStyleSheet;
@@ -45,7 +67,7 @@ public class XSLTTransformStep implements TransformStep
         this.xsltStyleSheet = xsltStyleSheet;
     }
     
-    public XSLTTransformStep()
+    public CumulativeXSLTTransformStep()
     {
     }
 
@@ -60,7 +82,7 @@ public class XSLTTransformStep implements TransformStep
     }
 
 
-    public void transform(StreamSource src, StreamResult result) throws TransformerException
+    public boolean transform(StreamSource base, StreamSource src, StreamResult result) throws TransformerException
     {
         tx.transform(src, result);
         if (Logger.getLogger(Transformer.class.getName()).isLoggable(Level.FINEST));
@@ -68,10 +90,10 @@ public class XSLTTransformStep implements TransformStep
 
             Logger.getLogger(Transformer.class.getName()).log(Level.FINEST, result.toString());
         }
-
+            return true;
     }
     
-    public void transform(StreamSource src, StreamResult result, Properties props) throws TransformerException
+    public boolean transform(StreamSource base, StreamSource src, StreamResult result, Properties props) throws TransformerException
     {
         if (styleSheetParameters != null)
         {
@@ -100,7 +122,7 @@ public class XSLTTransformStep implements TransformStep
 
             Logger.getLogger(Transformer.class.getName()).log(Level.FINEST, result.toString());
         }
-
+        return true;
     }
 
 
@@ -149,7 +171,7 @@ public class XSLTTransformStep implements TransformStep
             }
             catch (TransformerConfigurationException ex)
             {
-                Logger.getLogger(XSLTTransformStep.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CumulativeXSLTTransformStep.class.getName()).log(Level.SEVERE, null, ex);
             }
             finally
             {

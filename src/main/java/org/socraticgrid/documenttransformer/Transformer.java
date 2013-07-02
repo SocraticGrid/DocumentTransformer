@@ -4,6 +4,7 @@
  */
 package org.socraticgrid.documenttransformer;
 
+import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
 import java.io.InputStream;
 import java.lang.String;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import java.util.Properties;
 public class Transformer
 {
   
-    private HashMap<String, TransformPipeline> transformPipeline; 
+    private HashMap<String, SingleSourcePipeline> transformPipeline; 
     
     //Factory
     //Initialization
@@ -27,7 +28,7 @@ public class Transformer
     //    System.setProperty("javax.xml.transform.TransformerFactory", "net.sf.saxon.TransformerFactoryImpl");
     //}
 
-    public void setTransformPipeline(HashMap<String, TransformPipeline> transformPipeline)
+    public void setTransformPipeline(HashMap<String, SingleSourcePipeline> transformPipeline)
     {
         this.transformPipeline=transformPipeline;
     }
@@ -48,7 +49,7 @@ public class Transformer
         String out = null;
         if (transformPipeline.containsKey(pipeline))
         {
-            out = transformPipeline.get(pipeline).transform(inStr);
+            out = transformPipeline.get(pipeline).transform(inStr,props);
         }
    
         return out;
@@ -70,7 +71,7 @@ public class Transformer
         InputStream out = null;
         if (transformPipeline.containsKey(pipeline))
         {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr);
+            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,props);
         }
    
         return out;
