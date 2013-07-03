@@ -4,7 +4,7 @@
  */
 package org.socraticgrid.documenttransformer.transfromsteps;
 
-import org.socraticgrid.documenttransformer.interfaces.SimpleTransformStep;
+import org.socraticgrid.documenttransformer.interfaces.CumulativeTransformStep;
 
 import org.springframework.core.io.Resource;
 
@@ -18,34 +18,59 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 
+import javax.xml.transform.Source;
 import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 
 /**
- * TODO: Look for solutions to the transform treading issue.
  *
  * @author  Jerry Goodnough
  */
-public class XSLTTransformStep implements SimpleTransformStep
+public class CumulativeXSLTTransformStep implements CumulativeTransformStep
 {
 
-    private static final Logger logger = Logger.getLogger(XSLTTransformStep.class
-            .getName());
+    private static final Logger logger = Logger.getLogger(
+            CumulativeXSLTTransformStep.class.getName());
 
+    private String baseDocumentName = "baseDocument";
+
+    private String sourceDocumentName = "source.xml";
 
     private HashMap<String, Object> styleSheetParameters = null;
     private Templates tTemplate;
 
     private Resource xsltStyleSheet;
 
-    public XSLTTransformStep()
+    public CumulativeXSLTTransformStep()
     {
+    }
+
+    /**
+     * Get the value of baseDocumentName. This the name of the document as known in
+     * the XLST. By default the source is called source.xml
+     *
+     * @return  the value of baseDocumentName
+     */
+    public String getBaseDocumentName()
+    {
+        return baseDocumentName;
+    }
+
+    /**
+     * Get the value of sourceDocumentName.
+     *
+     * @return  the value of sourceDocumentName
+     */
+    public String getSourceDocumentName()
+    {
+        return sourceDocumentName;
     }
 
     public HashMap<String, Object> getStyleSheetParameters()
@@ -112,6 +137,26 @@ public class XSLTTransformStep implements SimpleTransformStep
 
     }
 
+    /**
+     * Set the value of baseDocumentName.
+     *
+     * @param  baseDocumentName  new value of baseDocumentName
+     */
+    public void setBaseDocumentName(String baseDocumentName)
+    {
+        this.baseDocumentName = baseDocumentName;
+    }
+
+    /**
+     * Set the value of sourceDocumentName.
+     *
+     * @param  sourceDocumentName  new value of sourceDocumentName
+     */
+    public void setSourceDocumentName(String sourceDocumentName)
+    {
+        this.sourceDocumentName = sourceDocumentName;
+    }
+
     public void setStyleSheetParameters(HashMap<String, Object> params)
     {
         this.styleSheetParameters = params;
@@ -122,39 +167,18 @@ public class XSLTTransformStep implements SimpleTransformStep
         this.xsltStyleSheet = xsltStyleSheet;
     }
 
-
-    public boolean transform(StreamSource src, StreamResult result)
-        throws TransformerException
+    @Override
+    public boolean transform(StreamSource base, StreamSource src,
+        StreamResult result) throws TransformerException
     {
-        Transformer tx = this.getTransformer();
-
-        if (styleSheetParameters != null)
-        {
-            Iterator<String> keyItr = styleSheetParameters.keySet().iterator();
-
-            while (keyItr.hasNext())
-            {
-                String key = keyItr.next();
-                tx.setParameter(key, styleSheetParameters.get(key));
-            }
-        }
-
-        tx.transform(src, result);
-        tx.clearParameters();
-
-        if (logger.isLoggable(Level.FINEST))
-        {
-            logger.log(Level.FINEST,
-                result.toString());
-        }
-
-        return true;
+        return this.transform(base, src, result, null);
     }
 
+
     /**
-     * Handle the transformation.
+     * DOCUMENT ME!
      *
-      *
+     * @param   base
      * @param   src
      * @param   result
      * @param   props
@@ -164,10 +188,16 @@ public class XSLTTransformStep implements SimpleTransformStep
      * @throws  TransformerException
      */
     @Override
-    public  boolean transform(StreamSource src, StreamResult result,
-        Properties props) throws TransformerException
+    public boolean transform(StreamSource base, StreamSource src,
+        StreamResult result, Properties props) throws TransformerException
     {
+
         Transformer tx = this.getTransformer();
+
+        // Create the URIResolver to map document streams to
+        ResolveStreams rel = new ResolveStreams(baseDocumentName, base,
+                tx.getURIResolver());
+        tx.setURIResolver(rel);
 
         if (styleSheetParameters != null)
         {
@@ -195,18 +225,12 @@ public class XSLTTransformStep implements SimpleTransformStep
         tx.transform(src, result);
         tx.clearParameters();
 
-        if (logger.isLoggable(Level.FINEST))
-        {
-        
-            logger.log(Level.FINEST,
-                result.toString());
-        }
 
         return true;
     }
 
     /**
-     * Get a Transformer based on a template for Thread safety.
+     *  Get a Transformer based on a template for Thread safety
      */
     protected Transformer getTransformer()
     {
@@ -244,5 +268,43 @@ public class XSLTTransformStep implements SimpleTransformStep
         }
 
         return tx;
+    }
+
+    class ResolveStreams implements URIResolver
+    {
+        URIResolver baseResolver;
+        StreamSource baseSrc;
+
+        String name;
+
+        public ResolveStreams(String name, StreamSource baseSrc,
+            URIResolver baseResolver)
+        {
+            this.name = name;
+            this.baseSrc = baseSrc;
+            this.baseResolver = baseResolver;
+        }
+
+        @Override
+        public Source resolve(String href, String base) throws TransformerException
+        {
+            Source out = null;
+
+            if (href.equals(name))
+            {
+                out = this.baseSrc;
+            }
+            else
+            {
+
+                if (this.baseResolver != null)
+                {
+                    out = baseResolver.resolve(href, base);
+                }
+            }
+
+            return out;
+        }
+
     }
 }
