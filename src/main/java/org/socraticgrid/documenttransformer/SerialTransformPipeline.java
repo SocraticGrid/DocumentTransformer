@@ -1,5 +1,5 @@
 /*-
- * 
+ *
  * *************************************************************************************************************
  *  Copyright (C) 2013 by Cognitive Medical Systems, Inc
  *  (http://www.cognitivemedciine.com) * * Licensed under the Apache License,
@@ -11,7 +11,7 @@
  *  KIND, either express or implied. * See the License for the specific language
  *  governing permissions and limitations under the License. *
  * *************************************************************************************************************
- * 
+ *
  * *************************************************************************************************************
  *  Socratic Grid contains components to which third party terms apply. To comply
  *  with these terms, the following * notice is provided: * * TERMS AND
@@ -41,16 +41,20 @@
  */
 package org.socraticgrid.documenttransformer;
 
-import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
 import org.socraticgrid.documenttransformer.interfaces.SimpleTransformStep;
+import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamResult;
@@ -58,83 +62,115 @@ import javax.xml.transform.stream.StreamSource;
 
 
 /**
- * Stock transformation pipeline - Does a serial transformation where
- * the results of one step are the input to the next step.
- * 
- * @author Jerry Goodnough
+ * Stock transformation pipeline - Does a serial transformation where the results of
+ * one step are the input to the next step.
+ *
+ * @author  Jerry Goodnough
  */
 public class SerialTransformPipeline implements SingleSourcePipeline
 {
-
+    private static final Logger logger = Logger.getLogger(SerialTransformPipeline.class.getName());
 
     private List<SimpleTransformStep> transformChain = null;
 
-    //TODO: Decouple and move to a resource lookup bean in the future.
+    // TODO: Decouple and move to a resource lookup bean in the future.
     public SerialTransformPipeline()
     {
     }
 
-    //Factory
+    // Factory
     public void setTransformChain(List<SimpleTransformStep> transformChain)
     {
         this.transformChain = transformChain;
     }
-    
+
+    @Override
+    public String transform(InputStream inStr)
+    {
+        ByteArrayOutputStream outResultStream = this.internalTransform(inStr);
+
+        return (outResultStream == null) ? "" : outResultStream.toString();
+    }
+
+    @Override
+    public String transform(InputStream inStr, Properties props)
+    {
+        ByteArrayOutputStream outResultStream = this.internalTransform(inStr, props);
+
+        return (outResultStream == null) ? "" : outResultStream.toString();
+
+    }
+
     @Override
     public InputStream transformAsInputStream(InputStream inStr)
     {
         ByteArrayOutputStream outResultStream = this.internalTransform(inStr);
-        return (outResultStream == null) ? null : new ByteArrayInputStream(outResultStream.toByteArray());
+
+        return (outResultStream == null)
+            ? null : new ByteArrayInputStream(outResultStream.toByteArray());
     }
+
     @Override
-    public InputStream transformAsInputStream(InputStream inStr,Properties props)
+    public InputStream transformAsInputStream(InputStream inStr, Properties props)
     {
-        ByteArrayOutputStream outResultStream = this.internalTransform(inStr,props);
-        return (outResultStream == null) ? null : new ByteArrayInputStream(outResultStream.toByteArray());
-        
+        ByteArrayOutputStream outResultStream = this.internalTransform(inStr, props);
+
+        return (outResultStream == null)
+            ? null : new ByteArrayInputStream(outResultStream.toByteArray());
+
     }
-    
+
     protected ByteArrayOutputStream internalTransform(InputStream inStr)
     {
         StreamResult result;
         ByteArrayOutputStream outResultStream = null;
+
         if (transformChain != null)
         {
 
             Iterator<SimpleTransformStep> itr = transformChain.iterator();
             StreamSource src = new StreamSource(inStr);
+
             while (itr.hasNext())
             {
                 SimpleTransformStep tx = itr.next();
-                //FUTURE: Provide Parameterz
+                // FUTURE: Provide Parameterz
 
                 ByteArrayOutputStream resultStream = new ByteArrayOutputStream();
                 result = new StreamResult(resultStream);
+
                 try
                 {
                     boolean changed = tx.transform(src, result);
                     outResultStream = resultStream;
-                    
-                    if (Logger.getLogger(Transformer.class.getName()).isLoggable(Level.FINEST));
-                    {
 
-                        Logger.getLogger(Transformer.class.getName()).log(Level.FINEST, result.toString());
+                    if (logger.isLoggable(
+                                Level.FINEST))
+                    {
+         
+
+                        logger.log(
+                            Level.FINEST, result.toString());
                     }
+
                     if (itr.hasNext())
                     {
+
                         if (changed == true)
                         {
+
                             // Prepare the next source
                             ByteArrayInputStream bs = new ByteArrayInputStream(
                                     resultStream.toByteArray());
                             src = new StreamSource(bs);
                         }
                     }
-                    
+
                 }
                 catch (TransformerException ex)
                 {
-                    Logger.getLogger(Transformer.class.getName()).log(Level.SEVERE, null, ex);
+                  logger.log(Level.SEVERE,
+                        null, ex);
 
                     break;
                 }
@@ -142,72 +178,84 @@ public class SerialTransformPipeline implements SingleSourcePipeline
         }
 
         return outResultStream;
-                
-    }      
-    
-    protected ByteArrayOutputStream internalTransform(InputStream inStr,Properties props)
+
+    }
+
+    protected ByteArrayOutputStream internalTransform(InputStream inStr,
+        Properties props)
     {
 
         StreamResult result;
         ByteArrayOutputStream outResultStream = null;
+
         if (transformChain != null)
         {
 
             Iterator<SimpleTransformStep> itr = transformChain.iterator();
             StreamSource src = new StreamSource(inStr);
+
             while (itr.hasNext())
             {
                 SimpleTransformStep tx = itr.next();
-                //FUTURE: Provide Parameterz
+                // FUTURE: Provide Parameterz
 
                 ByteArrayOutputStream resultStream = new ByteArrayOutputStream();
                 result = new StreamResult(resultStream);
+
                 try
                 {
-                    
+
                     boolean changed = tx.transform(src, result, props);
                     outResultStream = resultStream;
-                    
-                    if (Logger.getLogger(Transformer.class.getName()).isLoggable(Level.FINEST));
-                    {
 
-                        Logger.getLogger(Transformer.class.getName()).log(Level.FINEST, result.toString());
+                    if (Logger.getLogger(Transformer.class.getName()).isLoggable(
+                                Level.FINEST))
+                    {
+                                Logger.getLogger(Transformer.class.getName()).log(
+                            Level.FINEST, result.toString());
                     }
+
                     if (itr.hasNext())
                     {
+
                         if (changed == true)
                         {
-                            //Prepare the next source
-                         ByteArrayInputStream bs = new ByteArrayInputStream(resultStream.toByteArray());
-                         src = new StreamSource(bs); 
+
+                            // Prepare the next source
+                            ByteArrayInputStream bs = new ByteArrayInputStream(
+                                    resultStream.toByteArray());
+                            src = new StreamSource(bs);
+                        }
+                        else
+                        {
+                            if (src.getInputStream().markSupported())
+                            {
+                               src.getInputStream().reset();
+                            }
+                            else
+                            {
+                                logger.severe("Transformation Step did not make a change and inputstream can not reset.");
+                                break;
+                            }
                         }
                     }
-                    
+
                 }
                 catch (TransformerException ex)
                 {
-                    Logger.getLogger(Transformer.class.getName()).log(Level.SEVERE, null, ex);
+                    logger.log(Level.SEVERE,
+                        null, ex);
 
                     break;
+                }
+                catch (IOException ex)
+                {
+                    logger.log(
+                        Level.SEVERE, null, ex);
                 }
             }
         }
 
         return outResultStream;
-    }
-    
-    @Override
-    public String transform(InputStream inStr)
-    {
-        ByteArrayOutputStream outResultStream = this.internalTransform(inStr);
-        return (outResultStream == null) ? "" : outResultStream.toString();
-    }
-    
-    @Override
-    public String transform(InputStream inStr,Properties props)
-    {
-        ByteArrayOutputStream outResultStream = this.internalTransform(inStr,props);
-        return (outResultStream == null) ? "" : outResultStream.toString();
-        
     }
 }

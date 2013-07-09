@@ -47,3 +47,5 @@ Version 1.9 ----------------------------------------
 
   o   Moved all transformation steps to the subpackage transformtionsteps.
 
+  o   Fixed issue with Transformation steps that do not change the result. The inputstream will now attempt to reset. 
+
