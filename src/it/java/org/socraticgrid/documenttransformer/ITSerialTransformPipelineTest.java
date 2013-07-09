@@ -25,12 +25,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 // ApplicationContext will be loaded from "/applicationContext.xml" and "/applicationContext-test.xml"
 // in the root of the classpath
-@ContextConfiguration(locations={"classpath:Test-BaseDocumentTransformer.xml"})
-public class SerialTransformPipelineTest extends TestCase
+@ContextConfiguration(locations={"classpath:ITTest-BaseDocumentTransformer.xml"})
+public class ITSerialTransformPipelineTest extends TestCase
 {
     
 
-    public SerialTransformPipelineTest()
+    public ITSerialTransformPipelineTest()
     {
         super();
     }
