@@ -51,69 +51,34 @@ import java.util.logging.Logger;
 
 
 /**
- * DOCUMENT ME!
+ * 
  *
  * @author  Jerry Goodnough
  */
-public class Transformer
+public class CumlativeTransformer
 {
-    private static final Logger logger = Logger.getLogger(Transformer.class
+    private static final Logger logger = Logger.getLogger(CumlativeTransformer.class
             .getName());
-    private HashMap<String, SingleSourcePipeline> transformPipeline;
+    private HashMap<String, CumulativePipeline> transformPipeline;
 
     // Factory Initialization Transfomation static {
     // System.setProperty("javax.xml.transform.TransformerFactory",
     // "net.sf.saxon.TransformerFactoryImpl"); }
     public void setTransformPipeline(
-        HashMap<String, SingleSourcePipeline> transformPipeline)
+        HashMap<String, CumulativePipeline> transformPipeline)
     {
         this.transformPipeline = transformPipeline;
     }
 
-    public String transform(String pipeline, InputStream inStr)
-    {
-        String out = null;
 
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr);
-        }
-
-        return out;
-    }
-
-    public String transform(String pipeline, InputStream inStr, Properties props)
-    {
-        String out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr, props);
-        }
-
-        return out;
-    }
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr)
-    {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr);
-        }
-
-        return out;
-    }
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr,
+    public InputStream transformAsStream(String pipeline, InputStream inStr, InputStream baseStream,
         Properties props)
     {
         InputStream out = null;
 
         if (transformPipeline.containsKey(pipeline))
         {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,
+            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,baseStream,
                     props);
         }
         else

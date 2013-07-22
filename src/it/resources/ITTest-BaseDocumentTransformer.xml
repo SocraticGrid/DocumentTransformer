@@ -13,6 +13,7 @@
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
 
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd" xmlns:aop="http://www.springframework.org/schema/aop">
+   
     <context:annotation-config/>
 
    <!--  
@@ -160,6 +161,16 @@
         </property>
     </bean>
     
+    <bean name="Medications_Base" class="org.socraticgrid.documenttransformer.SerialTransformPipeline">
+        <property name="transformChain">
+            <list>
+                <ref bean="MDWS2FHIR_Meds" />
+                <!--               <ref bean="FHIRRX_Vuid2RxNorm"/> -->
+            </list>
+        </property>
+    </bean>
+    
+    
     
     <bean name="Problems" class="org.socraticgrid.documenttransformer.SerialTransformPipeline">
         <property name="transformChain">
@@ -171,14 +182,39 @@
         </property>
     </bean>
     
+        
+    <bean name="AllergiesAndDemographics" class="org.socraticgrid.documenttransformer.CumulativePipeline>
+        <property name="transformChain">
+            <list>
+                <bean class="org.socraticgrid.documenttransformer.cumulativetransfromsteps.XSLTTransformStep">
+                    <property name="xsltStyleSheet">
+                        <bean class="org.springframework.core.io.ClassPathResource">
+                            <constructor-arg value="MDWSDemographicsAndFHIR-atomToFHIR-atom"/>          
+                        </bean>
+                    </property>
+                    <property name="sourceDocumentName" value="source.xml"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    
     <bean name="Xform" class="org.socraticgrid.documenttransformer.Transformer">
         <property name="transformPipeline">
             <map>
                 <entry key="Medications" value-ref="Medications"/>
+                <entry key="Medications_Base" value-ref="Medications_Base"/>
                 <entry key="Problems" value-ref="Problems"/>
                 <entry key="Demographics" value-ref="Demographics"/>
                 <entry key="Allergies_FHIR" value-ref="Allergies_FHIR"/>
-                <entry key="Allergies_JSON" value-ref="Allergies_JSON"/>
+                <entry key="Allergies_JSON" value-ref="Allergies_JSON"/>     
+            </map>
+        </property>
+    </bean>
+    
+        <bean name="CumulativeXform" class="org.socraticgrid.documenttransformer.Transformer">
+        <property name="transformPipeline">
+            <map>
+                <entry key="AllergiesAndDemogrpahics" value-ref="AllergiesAndDemographics"/>              
             </map>
         </property>
     </bean>

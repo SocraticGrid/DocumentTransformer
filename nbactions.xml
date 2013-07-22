@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>build-with-dependencies</actionName>
+            <reactor>also-make</reactor>
+            <goals>
+                <goal>install</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-integration-test</actionName>
+            <displayName>integration-test</displayName>
+            <goals>
+                <goal>integration-test</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-verify</actionName>
+            <displayName>verify</displayName>
+            <goals>
+                <goal>verify</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-Run IT</actionName>
+            <displayName>Run IT</displayName>
+            <goals>
+                <goal>test-compile</goal>
+                <goal>failsafe:integration-test</goal>
+                
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-Debug IT</actionName>
+            <displayName>Debug IT</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>test-compile</goal>
+                <goal>failsafe:integration-test</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>Debug</activatedProfile>
+                <activatedProfile>IT</activatedProfile>
+            </activatedProfiles>
+        </action>
+        
+    </actions>

@@ -37,90 +37,40 @@
  *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, * EVEN IF
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
- * *************************************************************************************************************/
-package org.socraticgrid.documenttransformer;
+ * *************************************************************************************************************
+ */
+package org.socraticgrid.documenttransformer.transfromsteps;
 
-import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
+import org.socraticgrid.documenttransformer.interfaces.SimpleTransformStep;
 
-import java.io.InputStream;
-
-import java.util.HashMap;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 
 /**
- * DOCUMENT ME!
+ * This class with execute as series of xpath expressions and assign the result to
+ * specific properties.
  *
  * @author  Jerry Goodnough
  */
-public class Transformer
+public class XpathPropertyFetcher implements SimpleTransformStep
 {
-    private static final Logger logger = Logger.getLogger(Transformer.class
-            .getName());
-    private HashMap<String, SingleSourcePipeline> transformPipeline;
 
-    // Factory Initialization Transfomation static {
-    // System.setProperty("javax.xml.transform.TransformerFactory",
-    // "net.sf.saxon.TransformerFactoryImpl"); }
-    public void setTransformPipeline(
-        HashMap<String, SingleSourcePipeline> transformPipeline)
+    @Override
+    public boolean transform(StreamSource src, StreamResult result)
+        throws TransformerException
     {
-        this.transformPipeline = transformPipeline;
+        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose Tools | Templates.
     }
 
-    public String transform(String pipeline, InputStream inStr)
+    @Override
+    public boolean transform(StreamSource src, StreamResult result, Properties props)
+        throws TransformerException
     {
-        String out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr);
-        }
-
-        return out;
+        throw new UnsupportedOperationException("Not supported yet."); // To change body of generated methods, choose Tools | Templates.
     }
 
-    public String transform(String pipeline, InputStream inStr, Properties props)
-    {
-        String out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr, props);
-        }
-
-        return out;
-    }
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr)
-    {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr);
-        }
-
-        return out;
-    }
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr,
-        Properties props)
-    {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,
-                    props);
-        }
-        else
-        {
-            logger.log(Level.WARNING, "{0} not found in transformer", pipeline);
-        }
-
-        return out;
-    }
 }

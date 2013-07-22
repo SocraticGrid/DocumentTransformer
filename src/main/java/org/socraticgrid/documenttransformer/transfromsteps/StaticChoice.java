@@ -37,90 +37,52 @@
  *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, * EVEN IF
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
- * *************************************************************************************************************/
-package org.socraticgrid.documenttransformer;
+ * *************************************************************************************************************
+ */
+package org.socraticgrid.documenttransformer.transfromsteps;
 
-import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
-
-import java.io.InputStream;
-
-import java.util.HashMap;
+import org.socraticgrid.documenttransformer.interfaces.Chooser;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import javax.xml.transform.stream.StreamSource;
 
 
 /**
- * DOCUMENT ME!
+ * Simple Implementation of the Chooser Interface that makes a choice based on a
+ * static value - Most useful as testing stub or place holder since a static choice
+ * is really not much of a choice.
  *
  * @author  Jerry Goodnough
  */
-public class Transformer
+public class StaticChoice implements Chooser
 {
-    private static final Logger logger = Logger.getLogger(Transformer.class
-            .getName());
-    private HashMap<String, SingleSourcePipeline> transformPipeline;
 
-    // Factory Initialization Transfomation static {
-    // System.setProperty("javax.xml.transform.TransformerFactory",
-    // "net.sf.saxon.TransformerFactoryImpl"); }
-    public void setTransformPipeline(
-        HashMap<String, SingleSourcePipeline> transformPipeline)
+    private String choice;
+
+    /**
+     * Get the value of choice.
+     *
+     * @return  the value of choice
+     */
+    public String getChoice()
     {
-        this.transformPipeline = transformPipeline;
+        return choice;
     }
 
-    public String transform(String pipeline, InputStream inStr)
+    @Override
+    public String makeChoice(StreamSource subject, Properties props)
     {
-        String out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr);
-        }
-
-        return out;
+        return choice;
     }
 
-    public String transform(String pipeline, InputStream inStr, Properties props)
+    /**
+     * Set the value of choice.
+     *
+     * @param  choice  new value of choice
+     */
+    public void setChoice(String choice)
     {
-        String out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr, props);
-        }
-
-        return out;
+        this.choice = choice;
     }
 
-    public InputStream transformAsStream(String pipeline, InputStream inStr)
-    {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr);
-        }
-
-        return out;
-    }
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr,
-        Properties props)
-    {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,
-                    props);
-        }
-        else
-        {
-            logger.log(Level.WARNING, "{0} not found in transformer", pipeline);
-        }
-
-        return out;
-    }
 }

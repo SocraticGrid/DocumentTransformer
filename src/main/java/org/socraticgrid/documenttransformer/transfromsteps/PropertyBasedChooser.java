@@ -37,90 +37,118 @@
  *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, * EVEN IF
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
- * *************************************************************************************************************/
-package org.socraticgrid.documenttransformer;
+ * *************************************************************************************************************
+ */
+package org.socraticgrid.documenttransformer.transfromsteps;
 
-import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
-
-import java.io.InputStream;
-
-import java.util.HashMap;
+import org.socraticgrid.documenttransformer.interfaces.Chooser;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.transform.stream.StreamSource;
+
 
 /**
- * DOCUMENT ME!
+ * This Class makes a Choice based in a specific property. The property is looked up
+ * and checked against the choice map for which choice to return. The default choice
+ * is returned when the property is not found or the property does not appear in the
+ * choice map
  *
  * @author  Jerry Goodnough
  */
-public class Transformer
+public class PropertyBasedChooser implements Chooser
 {
-    private static final Logger logger = Logger.getLogger(Transformer.class
+    private static final Logger logger = Logger.getLogger(PropertyBasedChooser.class
             .getName());
-    private HashMap<String, SingleSourcePipeline> transformPipeline;
+    private Map<String, String> choiceMap;
+    private String defaultChoice;
 
-    // Factory Initialization Transfomation static {
-    // System.setProperty("javax.xml.transform.TransformerFactory",
-    // "net.sf.saxon.TransformerFactoryImpl"); }
-    public void setTransformPipeline(
-        HashMap<String, SingleSourcePipeline> transformPipeline)
+    private String propertyName;
+
+    /**
+     * Get the value of choiceMap.
+     *
+     * @return  the value of choiceMap
+     */
+    public Map<String, String> getChoiceMap()
     {
-        this.transformPipeline = transformPipeline;
+        return choiceMap;
     }
 
-    public String transform(String pipeline, InputStream inStr)
+    /**
+     * Get the value of defaultChoice.
+     *
+     * @return  the value of defaultChoice
+     */
+    public String getDefaultChoice()
     {
-        String out = null;
+        return defaultChoice;
+    }
 
-        if (transformPipeline.containsKey(pipeline))
+    /**
+     * Get the value of propertyName.
+     *
+     * @return  the value of propertyName
+     */
+    public String getPropertyName()
+    {
+        return propertyName;
+    }
+
+    @Override
+    public String makeChoice(StreamSource subject, Properties props)
+    {
+        String out = this.defaultChoice;
+        String propVal = props.getProperty(this.propertyName);
+
+        if (propVal != null)
         {
-            out = transformPipeline.get(pipeline).transform(inStr);
+
+            if (this.choiceMap.containsKey(propVal))
+            {
+                out = choiceMap.get(propVal);
+            }
+            else
+            {
+                logger.log(Level.INFO,
+                    "{0} is not mapped to a choice using the default choice",
+                    propVal);
+            }
         }
 
         return out;
     }
 
-    public String transform(String pipeline, InputStream inStr, Properties props)
+    /**
+     * Set the value of choiceMap.
+     *
+     * @param  choiceMap  new value of choiceMap
+     */
+    public void setChoiceMap(Map<String, String> choiceMap)
     {
-        String out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr, props);
-        }
-
-        return out;
+        this.choiceMap = choiceMap;
     }
 
-    public InputStream transformAsStream(String pipeline, InputStream inStr)
+    /**
+     * Set the value of defaultChoice.
+     *
+     * @param  defaultChoice  new value of defaultChoice
+     */
+    public void setDefaultChoice(String defaultChoice)
     {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr);
-        }
-
-        return out;
+        this.defaultChoice = defaultChoice;
     }
 
-    public InputStream transformAsStream(String pipeline, InputStream inStr,
-        Properties props)
+    /**
+     * Set the value of propertyName.
+     *
+     * @param  propertyName  new value of propertyName
+     */
+    public void setPropertyName(String propertyName)
     {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,
-                    props);
-        }
-        else
-        {
-            logger.log(Level.WARNING, "{0} not found in transformer", pipeline);
-        }
-
-        return out;
+        this.propertyName = propertyName;
     }
+
 }

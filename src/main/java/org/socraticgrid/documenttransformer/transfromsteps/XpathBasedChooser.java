@@ -1,5 +1,5 @@
 /*-
- *
+ * 
  * *************************************************************************************************************
  *  Copyright (C) 2013 by Cognitive Medical Systems, Inc
  *  (http://www.cognitivemedciine.com) * * Licensed under the Apache License,
@@ -11,7 +11,7 @@
  *  KIND, either express or implied. * See the License for the specific language
  *  governing permissions and limitations under the License. *
  * *************************************************************************************************************
- *
+ * 
  * *************************************************************************************************************
  *  Socratic Grid contains components to which third party terms apply. To comply
  *  with these terms, the following * notice is provided: * * TERMS AND
@@ -37,90 +37,26 @@
  *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, * EVEN IF
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
- * *************************************************************************************************************/
-package org.socraticgrid.documenttransformer;
+ * *************************************************************************************************************
+ */
+package org.socraticgrid.documenttransformer.transfromsteps;
 
-import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
-
-import java.io.InputStream;
-
-import java.util.HashMap;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import javax.xml.transform.stream.StreamSource;
+import org.socraticgrid.documenttransformer.interfaces.Chooser;
 
 /**
- * DOCUMENT ME!
- *
- * @author  Jerry Goodnough
+ * This class will provide a choice based on Xpath expressions executed on the source
+ * 
+ * @author Jerry Goodnough
  */
-public class Transformer
+public class XpathBasedChooser implements Chooser
 {
-    private static final Logger logger = Logger.getLogger(Transformer.class
-            .getName());
-    private HashMap<String, SingleSourcePipeline> transformPipeline;
 
-    // Factory Initialization Transfomation static {
-    // System.setProperty("javax.xml.transform.TransformerFactory",
-    // "net.sf.saxon.TransformerFactoryImpl"); }
-    public void setTransformPipeline(
-        HashMap<String, SingleSourcePipeline> transformPipeline)
+    @Override
+    public String makeChoice(StreamSource subject, Properties props)
     {
-        this.transformPipeline = transformPipeline;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public String transform(String pipeline, InputStream inStr)
-    {
-        String out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr);
-        }
-
-        return out;
-    }
-
-    public String transform(String pipeline, InputStream inStr, Properties props)
-    {
-        String out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transform(inStr, props);
-        }
-
-        return out;
-    }
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr)
-    {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr);
-        }
-
-        return out;
-    }
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr,
-        Properties props)
-    {
-        InputStream out = null;
-
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,
-                    props);
-        }
-        else
-        {
-            logger.log(Level.WARNING, "{0} not found in transformer", pipeline);
-        }
-
-        return out;
-    }
+    
 }
