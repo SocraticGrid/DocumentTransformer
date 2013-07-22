@@ -41,6 +41,8 @@
  */
 package org.socraticgrid.documenttransformer;
 
+import org.apache.commons.io.IOUtils;
+
 import org.socraticgrid.documenttransformer.interfaces.SimpleTransformStep;
 import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
 
@@ -69,8 +71,8 @@ import javax.xml.transform.stream.StreamSource;
  */
 public class SerialTransformPipeline implements SingleSourcePipeline
 {
-    private static final Logger logger = Logger.getLogger(SerialTransformPipeline.class.getName());
-
+    private static final Logger logger = Logger.getLogger(
+            SerialTransformPipeline.class.getName());
     private List<SimpleTransformStep> transformChain = null;
 
     // TODO: Decouple and move to a resource lookup bean in the future.
@@ -98,7 +100,6 @@ public class SerialTransformPipeline implements SingleSourcePipeline
         ByteArrayOutputStream outResultStream = this.internalTransform(inStr, props);
 
         return (outResultStream == null) ? "" : outResultStream.toString();
-
     }
 
     @Override
@@ -117,25 +118,24 @@ public class SerialTransformPipeline implements SingleSourcePipeline
 
         return (outResultStream == null)
             ? null : new ByteArrayInputStream(outResultStream.toByteArray());
-
     }
 
     protected ByteArrayOutputStream internalTransform(InputStream inStr)
     {
         StreamResult result;
         ByteArrayOutputStream outResultStream = null;
+        int changes = 0;
 
         if (transformChain != null)
         {
-
             Iterator<SimpleTransformStep> itr = transformChain.iterator();
             StreamSource src = new StreamSource(inStr);
 
             while (itr.hasNext())
             {
                 SimpleTransformStep tx = itr.next();
-                // FUTURE: Provide Parameterz
 
+                // FUTURE: Provide Parameterz
                 ByteArrayOutputStream resultStream = new ByteArrayOutputStream();
                 result = new StreamResult(resultStream);
 
@@ -144,13 +144,15 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                     boolean changed = tx.transform(src, result);
                     outResultStream = resultStream;
 
-                    if (logger.isLoggable(
-                                Level.FINEST))
+                    if (logger.isLoggable(Level.FINEST))
                     {
-         
+                        logger.log(Level.FINEST, result.toString());
+                    }
 
-                        logger.log(
-                            Level.FINEST, result.toString());
+                    // Count Changes
+                    if (changed)
+                    {
+                        changes++;
                     }
 
                     if (itr.hasNext())
@@ -165,54 +167,81 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                             src = new StreamSource(bs);
                         }
                     }
-
                 }
                 catch (TransformerException ex)
                 {
-                  logger.log(Level.SEVERE,
-                        null, ex);
+                    logger.log(Level.SEVERE, null, ex);
 
                     break;
                 }
             }
         }
+        if (changes == 0)
+        {
+
+            if (inStr.markSupported())
+            {
+
+                try
+                {
+                    logger.fine("No changes occured in transfornm - copying input");
+                    inStr.reset();
+                    outResultStream = new ByteArrayOutputStream();
+                    IOUtils.copyLarge(inStr, outResultStream);
+                }
+                catch (IOException ex)
+                {
+                    logger.log(Level.SEVERE,
+                        "Exception copying Input Stream when no transform has occured",
+                        ex);
+                }
+            }
+            else
+            {
+                logger.severe(
+                    "Transformation did not make a change and inputstream can not reset.");
+            }
+        }
 
         return outResultStream;
-
     }
 
     protected ByteArrayOutputStream internalTransform(InputStream inStr,
         Properties props)
     {
-
         StreamResult result;
         ByteArrayOutputStream outResultStream = null;
+        int changes = 0;
 
         if (transformChain != null)
         {
-
             Iterator<SimpleTransformStep> itr = transformChain.iterator();
             StreamSource src = new StreamSource(inStr);
 
             while (itr.hasNext())
             {
                 SimpleTransformStep tx = itr.next();
-                // FUTURE: Provide Parameterz
 
+                // FUTURE: Provide Parameterz
                 ByteArrayOutputStream resultStream = new ByteArrayOutputStream();
                 result = new StreamResult(resultStream);
 
                 try
                 {
-
                     boolean changed = tx.transform(src, result, props);
                     outResultStream = resultStream;
 
                     if (Logger.getLogger(Transformer.class.getName()).isLoggable(
                                 Level.FINEST))
                     {
-                                Logger.getLogger(Transformer.class.getName()).log(
+                        Logger.getLogger(Transformer.class.getName()).log(
                             Level.FINEST, result.toString());
+                    }
+
+                    // Count Changes
+                    if (changed)
+                    {
+                        changes++;
                     }
 
                     if (itr.hasNext())
@@ -228,31 +257,58 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                         }
                         else
                         {
+
                             if (src.getInputStream().markSupported())
                             {
-                               src.getInputStream().reset();
+                                src.getInputStream().reset();
                             }
                             else
                             {
-                                logger.severe("Transformation Step did not make a change and inputstream can not reset.");
+                                logger.severe(
+                                    "Transformation Step did not make a change and inputstream can not reset.");
+
                                 break;
                             }
                         }
                     }
-
                 }
                 catch (TransformerException ex)
                 {
-                    logger.log(Level.SEVERE,
-                        null, ex);
+                    logger.log(Level.SEVERE, null, ex);
 
                     break;
                 }
                 catch (IOException ex)
                 {
-                    logger.log(
-                        Level.SEVERE, null, ex);
+                    logger.log(Level.SEVERE, null, ex);
                 }
+            }
+        }
+
+        if (changes == 0)
+        {
+
+            if (inStr.markSupported())
+            {
+
+                try
+                {
+                    logger.fine("No changes occured in transfornm - copying input");
+                    inStr.reset();
+                    outResultStream = new ByteArrayOutputStream();
+                    IOUtils.copyLarge(inStr, outResultStream);
+                }
+                catch (IOException ex)
+                {
+                    logger.log(Level.SEVERE,
+                        "Exception copying Input Stream when no transform has occured",
+                        ex);
+                }
+            }
+            else
+            {
+                logger.severe(
+                    "Transformation did not make a change and inputstream can not reset.");
             }
         }
 

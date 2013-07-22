@@ -24,6 +24,10 @@ and Cumulative Transformations
 
 Version 1.9 ----------------------------------------
 
+  o   Experimental CumlativeTransform now in places - Model being refined.
+
+  o   Integration with Failsafe testing and Unit testing Mockito now supported.
+
   o   Fixed Multithreading issue and moved use templates in the XSLT transformers.
 
   o   Add the notion of Cumulative Transformation. 

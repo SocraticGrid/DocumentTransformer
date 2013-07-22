@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TaggedTextArray xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://mdws.medora.va.gov/EmrSvc">
+	<count>1</count>
+	<results>
+		<TaggedText>
+			<tag>102</tag>
+			<text>
+				<results version='1.1' timeZone='-0500'>
+					<demographics total='1'>
+						<patient>
+							<address streetLine1='Any Street' city='Any Town' stateProvince='WEST VIRGINIA' postalCode='30000-0030'/>
+							<bid value='O0100'/>
+							<dob value='2350407'/>
+							<facilities>
+								<facility code='998' name='ABILENE (CAA)' latestDate='3010101' domain='CAA.DOMAIN.GOV'/>
+								<facility code='997' name='CHARLESTON (CBB)' latestDate='3010101'/>
+								<facility code='995' name='CENTRAL CITY (CCC)' latestDate='3010101' domain='CCC.DOMAIN.GOV' homeSite='1'/>
+								<facility code='994' name='LUBBOCK (CDD)' latestDate='3010101'/>
+								<facility code='988' name='BOCA RATON (CEE)' latestDate='3010101' domain='CEE.DOMAIN.GOV'/>
+								<facility code='996' name='CHAMPAIGN (CFF)' latestDate='3010101'/>
+								<facility code='993' name='YUMA  (CGG)' latestDate='3010101'/>
+								<facility code='992' name='LAREDO (CHH)' latestDate='3010101'/>
+								<facility code='989' name='PARK CITY  (CII)' latestDate='3010101'/>
+								<facility code='991' name='JAMESTOWN (CJJ)' latestDate='3010101'/>
+								<facility code='990' name='SOUTH BEND (CKK)' latestDate='3010101'/>
+								<facility code='999' name='LYNCHBURG (CLL)' latestDate='3010101'/>
+								<facility code='987' name='ASPEN (CMM)' latestDate='3010101'/>
+							</facilities>
+							<familyName value='ONEHUNDRED'/>
+							<fullName value='ONEHUNDRED,PATIENT'/>
+							<gender value='M'/>
+							<givenNames value='PATIENT'/>
+							<icn value='11000'/>
+							<id value='100013'/>
+							<lrdfn value='634'/>
+							<sc value='1'/>
+							<scPercent value='0'/>
+							<ssn value='666000100'/>
+							<supports>
+								<support contactType='NOK' name='VETERAN,BROTHER'>
+</support>
+							</supports>
+							<telecomList>
+								<telecom usageType='H' value='(222)555-8235'/>
+								<telecom usageType='WP' value='(222)555-7720'/>
+							</telecomList>
+							<veteran value='1'/>
+						</patient>
+						<patient>
+							<bid value="B0008"/>
+							<dob value="2350407"/>
+							<facilities>
+								<facility code="500" name="CAMP MASTER" latestDate="3020415" domain="VEHU.FO-ALBANY.MED.VA.GOV"/>
+							</facilities>
+							<familyName value="BCMA"/>
+							<fullName value="BCMA,EIGHT"/>
+							<gender value="M"/>
+							<givenNames value="EIGHT"/>
+							<id value="100022"/>
+							<lrdfn value="418"/>
+							<sc value="0"/>
+							<ssn value="666330008"/>
+							<veteran value="1"/>
+						</patient>
+					</demographics>
+				</results>
+			</text>
+		</TaggedText>
+	</results>
+</TaggedTextArray>

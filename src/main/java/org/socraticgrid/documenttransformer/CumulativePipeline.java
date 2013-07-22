@@ -4,11 +4,22 @@
  */
 package org.socraticgrid.documenttransformer;
 
-import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import org.socraticgrid.documenttransformer.interfaces.CumulativeTransformStep;
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import org.apache.commons.io.IOUtils;
+import org.socraticgrid.documenttransformer.interfaces.DualSourcePipeline;
+import org.socraticgrid.documenttransformer.interfaces.SimpleTransformStep;
 import org.springframework.core.io.Resource;
 
 /**
@@ -16,29 +27,29 @@ import org.springframework.core.io.Resource;
  * original input (unless swapped by a step) and the output of the prior step to
  * @author Jerry Goodnough
  */
-public class CumulativePipeline implements SingleSourcePipeline
+public class CumulativePipeline implements DualSourcePipeline 
 {
-
-    private List<CumulativeTransformStep> TransformChain;
+    private static final Logger logger = Logger.getLogger(CumulativePipeline.class.getName());
+    private List<CumulativeTransformStep> transformChain;
 
     /**
-     * Get the value of TransformChain
+     * Get the value of transformChain
      *
-     * @return the value of TransformChain
+     * @return the value of transformChain
      */
     public List<CumulativeTransformStep> getTransformChain()
     {
-        return TransformChain;
+        return transformChain;
     }
 
     /**
-     * Set the value of TransformChain
+     * Set the value of transformChain
      *
-     * @param TransformChain new value of TransformChain
+     * @param transformChain new value of transformChain
      */
     public void setTransformChain(List<CumulativeTransformStep> TransformChain)
     {
-        this.TransformChain = TransformChain;
+        this.transformChain = TransformChain;
     }
 
     private Resource BaseTemplate;
@@ -62,29 +73,124 @@ public class CumulativePipeline implements SingleSourcePipeline
     {
         this.BaseTemplate = BaseTemplate;
     }
+    
 
     @Override
-    public InputStream transformAsInputStream(InputStream inStr)
+    public InputStream transformAsInputStream(InputStream inStream, InputStream baseStream, Properties props)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ByteArrayOutputStream outResultStream = this.internalTransform(inStream, baseStream, props);
+
+        return (outResultStream == null)
+            ? null : new ByteArrayInputStream(outResultStream.toByteArray());
     }
 
-    @Override
-    public InputStream transformAsInputStream(InputStream inStr, Properties props)
+    protected ByteArrayOutputStream internalTransform(InputStream inStream,InputStream baseStr,
+        Properties props)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        StreamResult result;
+        ByteArrayOutputStream outResultStream = null;
+        int changes = 0;
 
-    @Override
-    public String transform(InputStream inStr)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        if (transformChain != null)
+        {
+            Iterator<CumulativeTransformStep> itr = transformChain.iterator();
+            StreamSource src = new StreamSource(inStream);
+            StreamSource base = new StreamSource(baseStr); 
+           while (itr.hasNext())
+            {
+                CumulativeTransformStep tx = itr.next();
 
-    @Override
-    public String transform(InputStream inStr, Properties props)
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                // FUTURE: Provide Parameterz
+                ByteArrayOutputStream resultStream = new ByteArrayOutputStream();
+                result = new StreamResult(resultStream);
+                
+                try
+                {
+                    boolean changed = tx.transform(src, base, result, props);
+                    outResultStream = resultStream;
+
+                    if (Logger.getLogger(javax.xml.transform.Transformer.class.getName()).isLoggable(
+                                Level.FINEST))
+                    {
+                        Logger.getLogger(javax.xml.transform.Transformer.class.getName()).log(
+                            Level.FINEST, result.toString());
+                    }
+
+                    // Count Changes
+                    if (changed)
+                    {
+                        changes++;
+                    }
+
+                    if (itr.hasNext())
+                    {
+
+                        if (changed == true)
+                        {
+
+                            // Prepare the next source
+                            ByteArrayInputStream bs = new ByteArrayInputStream(
+                                    resultStream.toByteArray());
+                            src = new StreamSource(bs);
+                        }
+                        else
+                        {
+
+                            if (src.getInputStream().markSupported())
+                            {
+                                src.getInputStream().reset();
+                            }
+                            else
+                            {
+                                logger.severe(
+                                    "Transformation Step did not make a change and inputstream can not reset.");
+
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (TransformerException ex)
+                {
+                    logger.log(Level.SEVERE, null, ex);
+
+                    break;
+                }
+                catch (IOException ex)
+                {
+                    logger.log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+        if (changes == 0)
+        {
+
+            if (inStream.markSupported())
+            {
+
+                try
+                {
+                    logger.fine("No changes occured in transfornm - copying input");
+                    inStream.reset();
+                    outResultStream = new ByteArrayOutputStream();
+                    IOUtils.copyLarge(inStream, outResultStream);
+                }
+                catch (IOException ex)
+                {
+                    logger.log(Level.SEVERE,
+                        "Exception copying Input Stream when no transform has occured",
+                        ex);
+                }
+            }
+            else
+            {
+                logger.severe(
+                    "Transformation did not make a change and inputstream can not reset.");
+            }
+        }
+
+        return outResultStream;
     }
     
 }
