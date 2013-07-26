@@ -40,11 +40,10 @@
  * *************************************************************************************************************/
 package org.socraticgrid.documenttransformer;
 
-import org.socraticgrid.documenttransformer.interfaces.SingleSourcePipeline;
 
 import java.io.InputStream;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,13 +58,13 @@ public class CumlativeTransformer
 {
     private static final Logger logger = Logger.getLogger(CumlativeTransformer.class
             .getName());
-    private HashMap<String, CumulativePipeline> transformPipeline;
+    private Map<String, CumulativePipeline> transformPipeline;
 
     // Factory Initialization Transfomation static {
     // System.setProperty("javax.xml.transform.TransformerFactory",
     // "net.sf.saxon.TransformerFactoryImpl"); }
     public void setTransformPipeline(
-        HashMap<String, CumulativePipeline> transformPipeline)
+        Map<String, CumulativePipeline> transformPipeline)
     {
         this.transformPipeline = transformPipeline;
     }
