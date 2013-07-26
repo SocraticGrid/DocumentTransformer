@@ -22,6 +22,13 @@ and Cumulative Transformations
  Change History:
 ======================================================================================
 
+Version 1.10 ---------------------------------------
+
+  o   Now Supports MergeTransformations
+
+  o   CumlativeTransform now passing IT
+
+
 Version 1.9 ----------------------------------------
 
   o   Experimental CumlativeTransform now in places - Model being refined.
