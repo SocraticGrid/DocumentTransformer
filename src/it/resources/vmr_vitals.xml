@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdsInput xmlns="org.opencds.vmr.v1_0.schema.cdsinput" xmlns:dt="org.opencds.vmr.v1_0.schema.datatypes" xmlns:vmr="org.opencds.vmr.v1_0.schema.vmr" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="org.opencds.vmr.v1_0.schema.cdsinput C:/Users/JERRYG~1/Documents/MYDROP~1/Cognitive/MAPFOR~1/OPENCD~1/cdsInput.xsd">
+	<templateId xmlns="" root="2.16.840.1.113883.3.1829.11.1.1.1"/>
+	<vmrInput xmlns="">
+		<templateId root="2.16.840.1.113883.3.1829.11.1.2.1"/>
+		<patient>
+			<templateId root="2.16.840.1.113883.3.348.60.1"/>
+			<id root="unknown"/>
+			<demographics>
+				<name use="C">
+					<part value="unknown" type="FAM"/>
+				</name>
+			</demographics>
+			<clinicalStatements>
+				<observationResults>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="24021"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20130604190906" high="20130604190906" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="900" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="24020"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20130604190348" high="20130604190348" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="120" denominator="90"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="24018"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20130604190347" high="20130604190347" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="0" denominator="0"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="24017"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20130604190346" high="20130604190346" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="120" denominator="90"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="24019"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20130604190346" high="20130604190346" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="100" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23952"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20100305090000" high="20100305090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="134" denominator="81"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23954"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20100305090000" high="20100305090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="74" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23956"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20100305090000" high="20100305090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="1" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23953"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20100305090000" high="20100305090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.5" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23955"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20100305090000" high="20100305090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="178" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23445"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20091201085300" high="20091201085300" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="143" denominator="87"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23447"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20091201085300" high="20091201085300" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="78" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23450"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20091201085300" high="20091201085300" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="2" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23449"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20091201085300" high="20091201085300" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23446"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20091201085300" high="20091201085300" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.4" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="23448"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20091201085300" high="20091201085300" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="182" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22835"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20090824140000" high="20090824140000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="154" denominator="90"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22839"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20090824140000" high="20090824140000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="71" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22838"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20090824140000" high="20090824140000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="82" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22842"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20090824140000" high="20090824140000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="6" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22841"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20090824140000" high="20090824140000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="97" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22837"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20090824140000" high="20090824140000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="18" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22836"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20090824140000" high="20090824140000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.9" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22840"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20090824140000" high="20090824140000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="190" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22029"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20090417120000" high="20090417120000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="143" denominator="90"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22032"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20090417120000" high="20090417120000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="88" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22035"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20090417120000" high="20090417120000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="4" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22034"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20090417120000" high="20090417120000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="97" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22031"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20090417120000" high="20090417120000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="17" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22030"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20090417120000" high="20090417120000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="99.2" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="22033"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20090417120000" high="20090417120000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="185" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="21322"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20081110080000" high="20081110080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="135" denominator="86"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="21325"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20081110080000" high="20081110080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="80" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="21328"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20081110080000" high="20081110080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="2" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="21327"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20081110080000" high="20081110080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="97" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="21324"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20081110080000" high="20081110080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="18" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="21323"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20081110080000" high="20081110080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.2" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="21326"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20081110080000" high="20081110080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="180" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="20615"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20080610110000" high="20080610110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="124" denominator="80"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="20618"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20080610110000" high="20080610110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="71" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="20617"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20080610110000" high="20080610110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="82" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="20621"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20080610110000" high="20080610110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="0" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="20620"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20080610110000" high="20080610110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="20616"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20080610110000" high="20080610110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.8" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="20619"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20080610110000" high="20080610110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="172" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19908"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20080520110000" high="20080520110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="158" denominator="104"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19911"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20080520110000" high="20080520110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="71" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19910"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20080520110000" high="20080520110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="82" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19914"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20080520110000" high="20080520110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="3" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19913"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20080520110000" high="20080520110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19909"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20080520110000" high="20080520110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="101" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19912"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20080520110000" high="20080520110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="170" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19201"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20080506100000" high="20080506100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="156" denominator="96"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19204"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20080506100000" high="20080506100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="71" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19203"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20080506100000" high="20080506100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="82" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19207"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20080506100000" high="20080506100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="3" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19206"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20080506100000" high="20080506100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19202"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20080506100000" high="20080506100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="99.2" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="19205"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20080506100000" high="20080506100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="174" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="18498"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20080130110000" high="20080130110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="145" denominator="94"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="18500"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20080130110000" high="20080130110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="80" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="18502"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20080130110000" high="20080130110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="2" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="18501"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20080130110000" high="20080130110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="18499"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20080130110000" high="20080130110000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.8" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17989"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20071228090000" high="20071228090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="140" denominator="90"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17992"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20071228090000" high="20071228090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="71" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17991"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20071228090000" high="20071228090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="80" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17995"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20071228090000" high="20071228090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="1" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17994"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20071228090000" high="20071228090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17990"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20071228090000" high="20071228090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.6" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17993"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20071228090000" high="20071228090000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="166" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17282"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20071128080000" high="20071128080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="138" denominator="88"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17285"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20071128080000" high="20071128080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="71" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17284"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20071128080000" high="20071128080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="80" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17288"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20071128080000" high="20071128080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="0" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17287"/>
+						<observationFocus code="252465000" codeSystem="snomed" originalText="PULSE OXIMETRY"/>
+						<observationEventTime low="20071128080000" high="20071128080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98" unit="%"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17283"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20071128080000" high="20071128080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.6" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="17286"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20071128080000" high="20071128080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="168" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="16582"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20070424080000" high="20070424080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="136" denominator="70"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="16583"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20070424080000" high="20070424080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="82" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="16584"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20070424080000" high="20070424080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="175" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="16219"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20070411074500" high="20070411074500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="156" denominator="92"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="16220"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20070411074500" high="20070411074500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="87" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="16221"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20070411074500" high="20070411074500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="184" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="15856"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20070315080000" high="20070315080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="160" denominator="97"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="15857"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20070315080000" high="20070315080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="92" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="15858"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20070315080000" high="20070315080000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="196" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="15351"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20050316100000" high="20050316100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="168" denominator="68"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="15349"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20050316100000" high="20050316100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="72" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="15352"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20050316100000" high="20050316100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="1" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="15350"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20050316100000" high="20050316100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="18" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="15348"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20050316100000" high="20050316100000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="99" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14726"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20050316060000" high="20050316060000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="176" denominator="82"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14724"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20050316060000" high="20050316060000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="88" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14727"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20050316060000" high="20050316060000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="3" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14725"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20050316060000" high="20050316060000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="21" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14723"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20050316060000" high="20050316060000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="102.6" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14049"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20050315113000" high="20050315113000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="182" denominator="88"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14050"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20050315113000" high="20050315113000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="71" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14047"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20050315113000" high="20050315113000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="76" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14052"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20050315113000" high="20050315113000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="3" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14048"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20050315113000" high="20050315113000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="18" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14046"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20050315113000" high="20050315113000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.2" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="14051"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20050315113000" high="20050315113000" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="199" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="13094"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20040330213100" high="20040330213100" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="120" denominator="86"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="13095"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20040330213100" high="20040330213100" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="70" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="13092"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20040330213100" high="20040330213100" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="68" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="13097"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20040330213100" high="20040330213100" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="2" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="13093"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20040330213100" high="20040330213100" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="18" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="13091"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20040330213100" high="20040330213100" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.6" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="13096"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20040330213100" high="20040330213100" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="185" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="9457"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20030415160500" high="20030415160500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="146" denominator="92"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="9455"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20030415160500" high="20030415160500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="72" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="9459"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20030415160500" high="20030415160500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="5" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="9456"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20030415160500" high="20030415160500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="10" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="9454"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20030415160500" high="20030415160500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.7" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="9458"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20030415160500" high="20030415160500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="174" unit="lb"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="5328"/>
+						<observationFocus code="75367002" codeSystem="snomed" originalText="BLOOD PRESSURE"/>
+						<observationEventTime low="20030405151500" high="20030405151500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<ratio numerator="146" denominator="84"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="5329"/>
+						<observationFocus code="50373000" codeSystem="snomed" originalText="HEIGHT"/>
+						<observationEventTime low="20030405151500" high="20030405151500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="70" unit="in"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="5326"/>
+						<observationFocus code="78564009" codeSystem="snomed" originalText="PULSE"/>
+						<observationEventTime low="20030405151500" high="20030405151500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="76" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="5331"/>
+						<observationFocus code="225908003" codeSystem="snomed" originalText="PAIN"/>
+						<observationEventTime low="20030405151500" high="20030405151500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="4" unit="undefined"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="5327"/>
+						<observationFocus code="86290005" codeSystem="snomed" originalText="RESPIRATION"/>
+						<observationEventTime low="20030405151500" high="20030405151500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="12" unit="/min"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="5325"/>
+						<observationFocus code="386725007" codeSystem="snomed" originalText="TEMPERATURE"/>
+						<observationEventTime low="20030405151500" high="20030405151500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="98.4" unit="F"/>
+						</observationValue>
+					</observationResult>
+					<observationResult>
+						<templateId root="2.16.840.1.113883.3.348.60.2"/>
+						<id root="2.16.840.1.113883.3.348.61.2" extension="5330"/>
+						<observationFocus code="27113001" codeSystem="snomed" originalText="WEIGHT"/>
+						<observationEventTime low="20030405151500" high="20030405151500" lowIsInclusive="true" highIsInclusive="true"/>
+						<observationValue>
+							<physicalQuantity value="172" unit="lb"/>
+						</observationValue>
+					</observationResult>
+				</observationResults>
+			</clinicalStatements>
+		</patient>
+	</vmrInput>
+</cdsInput>
