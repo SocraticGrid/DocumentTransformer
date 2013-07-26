@@ -42,10 +42,11 @@
 package org.socraticgrid.documenttransformer;
 
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.socraticgrid.documenttransformer.interfaces.MultipleInputPipeline;
 
 /**
  *
@@ -56,13 +57,13 @@ public class MergeTransformer
         private static final Logger logger = Logger.getLogger(MergeTransformer.class
             .getName());
         
-     private HashMap<String, MergePipeline> transformPipeline;
+     private Map<String, MultipleInputPipeline> transformPipeline;
 
     // Factory Initialization Transfomation static {
     // System.setProperty("javax.xml.transform.TransformerFactory",
     // "net.sf.saxon.TransformerFactoryImpl"); }
     public void setTransformPipeline(
-        HashMap<String, MergePipeline> transformPipeline)
+        Map<String, MultipleInputPipeline> transformPipeline)
     {
         this.transformPipeline = transformPipeline;
     }

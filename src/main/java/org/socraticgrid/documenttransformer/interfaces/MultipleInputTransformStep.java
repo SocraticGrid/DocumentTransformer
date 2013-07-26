@@ -1,5 +1,5 @@
 /*-
- *
+ * 
  * *************************************************************************************************************
  *  Copyright (C) 2013 by Cognitive Medical Systems, Inc
  *  (http://www.cognitivemedciine.com) * * Licensed under the Apache License,
@@ -11,7 +11,7 @@
  *  KIND, either express or implied. * See the License for the specific language
  *  governing permissions and limitations under the License. *
  * *************************************************************************************************************
- *
+ * 
  * *************************************************************************************************************
  *  Socratic Grid contains components to which third party terms apply. To comply
  *  with these terms, the following * notice is provided: * * TERMS AND
@@ -39,134 +39,23 @@
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
  * *************************************************************************************************************
  */
-package org.socraticgrid.documenttransformer;
+package org.socraticgrid.documenttransformer.interfaces;
 
-import org.apache.commons.io.IOUtils;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.util.Properties;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
+import org.socraticgrid.documenttransformer.TransformInput;
 
 /**
- * Provides a mapping between names and input streams.
  *
- * @author  Jerry Goodnough
+ * @author Jerry Goodnough
  */
-public class TransformInput
+public interface MultipleInputTransformStep
 {
-    private static final Logger logger = Logger.getLogger(TransformInput.class
-            .getName());
-    private String baseStreamName;
-    private StreamSource defaultStream = null;
-    private byte[] defStreamArray;
-    private HashMap<String, StreamSource> streamMap = new HashMap<>();
-
-    public TransformInput()
-    {
-    }
-
-    public void clear()
-    {
-        streamMap.clear();
-    }
-
-    public boolean containsStream(String name)
-    {
-        return streamMap.containsKey(name);
-    }
-
-    /**
-     * Get the value of baseStream.
-     *
-     * @return  the value of baseStream
-     */
-    public StreamSource getBaseStream()
-    {
-        return this.getStream(baseStreamName);
-    }
-
-    /**
-     * Get the value of baseStreamName.
-     *
-     * @return  the value of baseStreamName
-     */
-    public String getBaseStreamName()
-    {
-        return baseStreamName;
-    }
-
-    /**
-     * Get the value of defaultStream.
-     *
-     * @return  the value of defaultStream
-     */
-    public StreamSource getDefaultStream()
-    {
-        return defaultStream;
-    }
-
-    public byte[] getDefaultStreamAsByteArray()
-    {
-        logger.fine("Getting default Stream");
-
-        if (defStreamArray == null)
-        {
-
-            try
-            {
-                defStreamArray = IOUtils.toByteArray(defaultStream.getInputStream());
-            }
-            catch (IOException ex)
-            {
-                logger.log(Level.SEVERE, null, ex);
-            }
-        }
-
-        return defStreamArray;
-    }
-
-    public StreamSource getStream(String name)
-    {
-
-        if (streamMap.containsKey(name))
-        {
-            return streamMap.get(name);
-        }
-        else
-        {
-            return new StreamSource(new ByteArrayInputStream(
-                        getDefaultStreamAsByteArray()));
-        }
-    }
-
-    /**
-     * Set the value of baseStreamName.
-     *
-     * @param  baseStreamName  new value of baseStreamName
-     */
-    public void setBaseStreamName(String baseStreamName)
-    {
-        this.baseStreamName = baseStreamName;
-    }
-
-    /**
-     * Set the value of defaultStream.
-     *
-     * @param  defaultStream  new value of defaultStream
-     */
-    public void setDefaultStream(StreamSource defaultStream)
-    {
-        this.defaultStream = defaultStream;
-    }
-
-    public void setStream(String name, StreamSource stream)
-    {
-        streamMap.put(name, stream);
-    }
+      public boolean transform(StreamSource base, TransformInput input, StreamResult result, Properties props) throws TransformerException;  
+      
+      
+    public boolean transform(StreamSource base, TransformInput input,
+        StreamResult result) throws TransformerException;
 }

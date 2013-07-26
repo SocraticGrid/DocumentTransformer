@@ -17,15 +17,16 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import org.apache.commons.io.IOUtils;
-import org.socraticgrid.documenttransformer.multipleinputtransfomsteps.MultipleInputTransformStep;
+import org.socraticgrid.documenttransformer.interfaces.MultipleInputPipeline;
+import org.socraticgrid.documenttransformer.interfaces.MultipleInputTransformStep;
 import org.springframework.core.io.Resource;
 
 /**
- * The Cumulative Pipeline operates by providing each step with the
- * original input (unless swapped by a step) and the output of the prior step to
+ * The MergePipeline Pipeline operates by providing each step with the
+ * original input (unless swapped by a step) and the output of the prior step
  * @author Jerry Goodnough
  */
-public class MergePipeline 
+public class MergePipeline implements MultipleInputPipeline
 {
     private static final Logger logger = Logger.getLogger(MergePipeline.class.getName());
     private List<MultipleInputTransformStep> transformChain;

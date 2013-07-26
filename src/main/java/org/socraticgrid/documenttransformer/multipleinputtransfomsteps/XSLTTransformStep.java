@@ -5,6 +5,7 @@
 package org.socraticgrid.documenttransformer.multipleinputtransfomsteps;
 
 
+import org.socraticgrid.documenttransformer.interfaces.MultipleInputTransformStep;
 import org.socraticgrid.documenttransformer.TransformInput;
 
 import org.springframework.core.io.Resource;
@@ -111,7 +112,7 @@ public class XSLTTransformStep implements MultipleInputTransformStep
         this.xsltStyleSheet = xsltStyleSheet;
     }
 
-    public boolean transform(Source base, TransformInput input, StreamResult result)
+    public boolean transform(StreamSource base, TransformInput input, StreamResult result)
         throws TransformerException
     {
         return this.transform(base, input, result, null);
@@ -129,8 +130,7 @@ public class XSLTTransformStep implements MultipleInputTransformStep
      *
      * @throws  TransformerException
      */
-    public boolean transform(Source base, TransformInput input, StreamResult result,
-        Properties props) throws TransformerException
+    public boolean transform(StreamSource base, TransformInput input, StreamResult result, Properties props) throws TransformerException
     {
         Transformer tx = this.getTransformer();
 

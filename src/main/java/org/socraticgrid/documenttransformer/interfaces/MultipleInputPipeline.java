@@ -39,24 +39,17 @@
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
  * *************************************************************************************************************
  */
-package org.socraticgrid.documenttransformer.multipleinputtransfomsteps;
+package org.socraticgrid.documenttransformer.interfaces;
 
+import java.io.InputStream;
 import java.util.Properties;
-import javax.xml.transform.Source;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.stream.StreamResult;
 import org.socraticgrid.documenttransformer.TransformInput;
 
 /**
  *
  * @author Jerry Goodnough
  */
-public interface MultipleInputTransformStep
+public interface MultipleInputPipeline
 {
-      public boolean transform(Source base, TransformInput input,
-        StreamResult result, Properties props) throws TransformerException;  
-      
-      
-    public boolean transform(Source base, TransformInput input,
-        StreamResult result) throws TransformerException;
+      public InputStream transformAsInputStream(TransformInput in, Properties props); 
 }
