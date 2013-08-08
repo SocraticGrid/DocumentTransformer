@@ -212,6 +212,7 @@ public class SerialTransformPipeline implements SingleSourcePipeline
         StreamResult result;
         ByteArrayOutputStream outResultStream = null;
         int changes = 0;
+        boolean changed;
 
         if (transformChain != null)
         {
@@ -228,7 +229,7 @@ public class SerialTransformPipeline implements SingleSourcePipeline
 
                 try
                 {
-                    boolean changed = tx.transform(src, result, props);
+                    changed = tx.transform(src, result, props);
                     outResultStream = resultStream;
 
                     if (Logger.getLogger(Transformer.class.getName()).isLoggable(
@@ -238,12 +239,22 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                             Level.FINEST, result.toString());
                     }
 
-                    // Count Changes
-                    if (changed)
+                    if (changed == false)
                     {
-                        changes++;
-                    }
+                        if (src.getInputStream().markSupported())
+                        {
+                            src.getInputStream().reset();
+                        }
+                        else
+                        {
+                            logger.severe(
+                                "Transformation Step did not make a change and inputstream can not reset.");
 
+                            break;
+                        }
+
+                    }
+ 
                     if (itr.hasNext())
                     {
 
@@ -255,22 +266,10 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                                     resultStream.toByteArray());
                             src = new StreamSource(bs);
                         }
-                        else
-                        {
-
-                            if (src.getInputStream().markSupported())
-                            {
-                                src.getInputStream().reset();
-                            }
-                            else
-                            {
-                                logger.severe(
-                                    "Transformation Step did not make a change and inputstream can not reset.");
-
-                                break;
-                            }
-                        }
                     }
+                  
+                            
+                        
                 }
                 catch (TransformerException ex)
                 {

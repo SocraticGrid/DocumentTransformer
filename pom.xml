@@ -4,7 +4,7 @@
 
     <groupId>org.socraticgrid</groupId>
     <artifactId>DocumentTransformer</artifactId>
-    <version>1.10-SNAPSHOT</version>
+    <version>1.11-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>DocumentTransformer</name>
