@@ -167,12 +167,34 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                             src = new StreamSource(bs);
                         }
                     }
+                    
+                    else if ( (changed== false) && (changes>0) )
+                    {
+                        if (src.getInputStream().markSupported())
+                        {
+                            src.getInputStream().reset();
+                            outResultStream = new ByteArrayOutputStream();
+                            IOUtils.copyLarge(src.getInputStream(), outResultStream);
+                        }
+                        else
+                        {
+                            logger.severe(
+                                "Final Transformation Step did not make a change and inputstream can not reset.");
+
+                            break;
+                        }
+
+                    }
                 }
                 catch (TransformerException ex)
                 {
                     logger.log(Level.SEVERE, null, ex);
 
                     break;
+                }
+                catch (IOException ex)
+                {
+                    logger.log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -212,7 +234,6 @@ public class SerialTransformPipeline implements SingleSourcePipeline
         StreamResult result;
         ByteArrayOutputStream outResultStream = null;
         int changes = 0;
-        boolean changed;
 
         if (transformChain != null)
         {
@@ -229,7 +250,7 @@ public class SerialTransformPipeline implements SingleSourcePipeline
 
                 try
                 {
-                    changed = tx.transform(src, result, props);
+                    boolean changed = tx.transform(src, result, props);
                     outResultStream = resultStream;
 
                     if (Logger.getLogger(Transformer.class.getName()).isLoggable(
@@ -239,22 +260,12 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                             Level.FINEST, result.toString());
                     }
 
-                    if (changed == false)
+                    // Count Changes
+                    if (changed)
                     {
-                        if (src.getInputStream().markSupported())
-                        {
-                            src.getInputStream().reset();
-                        }
-                        else
-                        {
-                            logger.severe(
-                                "Transformation Step did not make a change and inputstream can not reset.");
-
-                            break;
-                        }
-
+                        changes++;
                     }
- 
+
                     if (itr.hasNext())
                     {
 
@@ -266,10 +277,40 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                                     resultStream.toByteArray());
                             src = new StreamSource(bs);
                         }
+                        else
+                        {
+
+                            if (src.getInputStream().markSupported())
+                            {
+                                src.getInputStream().reset();
+                            }
+                            else
+                            {
+                                logger.severe(
+                                    "Transformation Step did not make a change and inputstream can not reset.");
+
+                                break;
+                            }
+                        }
                     }
-                  
-                            
-                        
+                    else if ( (changed== false) && (changes>0) )
+                    {
+                        if (src.getInputStream().markSupported())
+                        {
+                            src.getInputStream().reset();
+                            outResultStream = new ByteArrayOutputStream();
+                            IOUtils.copyLarge(src.getInputStream(), outResultStream);
+                        }
+                        else
+                        {
+                            logger.severe(
+                                "Final Transformation Step did not make a change and inputstream can not reset.");
+
+                            break;
+                        }
+
+                    }
+                                
                 }
                 catch (TransformerException ex)
                 {
