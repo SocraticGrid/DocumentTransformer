@@ -167,12 +167,34 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                             src = new StreamSource(bs);
                         }
                     }
+                    
+                    else if ( (changed== false) && (changes>0) )
+                    {
+                        if (src.getInputStream().markSupported())
+                        {
+                            src.getInputStream().reset();
+                            outResultStream = new ByteArrayOutputStream();
+                            IOUtils.copyLarge(src.getInputStream(), outResultStream);
+                        }
+                        else
+                        {
+                            logger.severe(
+                                "Final Transformation Step did not make a change and inputstream can not reset.");
+
+                            break;
+                        }
+
+                    }
                 }
                 catch (TransformerException ex)
                 {
                     logger.log(Level.SEVERE, null, ex);
 
                     break;
+                }
+                catch (IOException ex)
+                {
+                    logger.log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -271,6 +293,24 @@ public class SerialTransformPipeline implements SingleSourcePipeline
                             }
                         }
                     }
+                    else if ( (changed== false) && (changes>0) )
+                    {
+                        if (src.getInputStream().markSupported())
+                        {
+                            src.getInputStream().reset();
+                            outResultStream = new ByteArrayOutputStream();
+                            IOUtils.copyLarge(src.getInputStream(), outResultStream);
+                        }
+                        else
+                        {
+                            logger.severe(
+                                "Final Transformation Step did not make a change and inputstream can not reset.");
+
+                            break;
+                        }
+
+                    }
+                                
                 }
                 catch (TransformerException ex)
                 {

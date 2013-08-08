@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdsInput xmlns:dt="org.opencds.vmr.v1_0.schema.datatypes" xmlns:vmr="org.opencds.vmr.v1_0.schema.vmr" xsi:schemaLocation="org.opencds.vmr.v1_0.schema.cdsinput C:/Users/JERRYG~1/Dropbox/Cognitive/MAPFOR~1/OPENCD~1/cdsInput.xsd" xmlns="org.opencds.vmr.v1_0.schema.cdsinput" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<templateId root="2.16.840.1.113883.3.1829.11.1.1.1" xmlns=""/>
+	<vmrInput xmlns="">
+		<templateId root="2.16.840.1.113883.3.1829.11.1.2.1"/>
+		<patient>
+			<id root="2.16.840.1.113883.3.348.61.7" extension="100013"/>
+			<demographics>
+				<birthTime value="19350407"/>
+				<gender code="M" codeSystem="2.16.840.1.113883.1.11.1" displayName="M"/>
+				<name use="C">
+					<part value="ONEHUNDRED" type="FAM"/>
+					<part value="PATIENT" type="GIV"/>
+				</name>
+				<address>
+					<part value="Any Street" type="SAL"/>
+					<part value="Any Town" type="CTY"/>
+					<part value="WEST VIRGINIA" type="STA"/>
+					<part value="30000-0030" type="ZIP"/>
+				</address>
+				<telecom value="(222)555-8235" use="home"/>
+				<telecom value="(222)555-7720" use="work"/>
+			</demographics>
+		</patient>
+	</vmrInput>
+</cdsInput>

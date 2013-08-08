@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdsInput xmlns="org.opencds.vmr.v1_0.schema.cdsinput" xmlns:dt="org.opencds.vmr.v1_0.schema.datatypes" xmlns:vmr="org.opencds.vmr.v1_0.schema.vmr" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="org.opencds.vmr.v1_0.schema.cdsinput C:/Users/JERRYG~1/Dropbox/Cognitive/MAPFOR~1/OPENCD~1/cdsInput.xsd">
+	<templateId xmlns="" root="2.16.840.1.113883.3.1829.11.1.1.1"/>
+	<vmrInput xmlns="">
+		<templateId root="2.16.840.1.113883.3.1829.11.1.2.1"/>
+		<patient>
+			<templateId root="2.16.840.1.113883.3.348.60.1"/>
+			<id root="unknown"/>
+			<demographics>
+				<name use="C">
+					<part value="unknown" type="FAM"/>
+				</name>
+			</demographics>
+			<clinicalStatements>
+				<procedureEvents>
+					<procedureEvent>
+						<templateId root="2.16.840.1.113883.3.348.60.9"/>
+						<id root="2.16.840.1.113883.3.348.61.2"/>
+						<procedureCode code="TDB" codeSystem="VAED" displayName="VA-ALCOHOL ABUSE" originalText="FAIR"/>
+						<procedureTime low="19970509130000" high="19970509130000"/>
+					</procedureEvent>
+					<procedureEvent>
+						<templateId root="2.16.840.1.113883.3.348.60.9"/>
+						<id root="2.16.840.1.113883.3.348.61.2"/>
+						<procedureCode code="TDB" codeSystem="VAED" displayName="VA-SMOKING CESSATION" originalText="FAIR"/>
+						<procedureTime low="19970509130000" high="19970509130000"/>
+					</procedureEvent>
+					<procedureEvent>
+						<templateId root="2.16.840.1.113883.3.348.60.9"/>
+						<id root="2.16.840.1.113883.3.348.61.2"/>
+						<procedureCode code="TDB" codeSystem="VAED" displayName="VA-ADVANCE DIRECTIVES SCREENING" originalText="FAIR"/>
+						<procedureTime low="19970509130000" high="19970509130000"/>
+					</procedureEvent>
+					<procedureEvent>
+						<templateId root="2.16.840.1.113883.3.348.60.9"/>
+						<id root="2.16.840.1.113883.3.348.61.2"/>
+						<procedureCode code="TDB" codeSystem="VAED" displayName="VA-NUTRITION/WEIGHT SCREENING" originalText="FAIR"/>
+						<procedureTime low="19970509130000" high="19970509130000"/>
+					</procedureEvent>
+				</procedureEvents>
+			</clinicalStatements>
+		</patient>
+	</vmrInput>
+</cdsInput>

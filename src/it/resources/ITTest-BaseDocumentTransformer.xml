@@ -183,13 +183,13 @@
     </bean>
     
         
-    <bean name="AllergiesAndDemographics" class="org.socraticgrid.documenttransformer.CumulativePipeline>
+    <bean name="AllergiesAndDemographics" class="org.socraticgrid.documenttransformer.CumulativePipeline">
         <property name="transformChain">
             <list>
                 <bean class="org.socraticgrid.documenttransformer.cumulativetransfromsteps.XSLTTransformStep">
                     <property name="xsltStyleSheet">
                         <bean class="org.springframework.core.io.ClassPathResource">
-                            <constructor-arg value="MDWSDemographicsAndFHIR-atomToFHIR-atom"/>          
+                            <constructor-arg value="MDWSDemographicsAndFHIR-atomToFHIR-atom.xslt"/>          
                         </bean>
                     </property>
                     <property name="sourceDocumentName" value="source.xml"/>
@@ -211,7 +211,7 @@
         </property>
     </bean>
     
-        <bean name="CumulativeXform" class="org.socraticgrid.documenttransformer.Transformer">
+        <bean name="CumulativeXform" class="org.socraticgrid.documenttransformer.CumlativeTransformer">
         <property name="transformPipeline">
             <map>
                 <entry key="AllergiesAndDemogrpahics" value-ref="AllergiesAndDemographics"/>              
