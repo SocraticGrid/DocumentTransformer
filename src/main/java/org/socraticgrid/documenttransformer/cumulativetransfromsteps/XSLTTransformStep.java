@@ -99,16 +99,16 @@ public class XSLTTransformStep implements CumulativeTransformStep
         {
 
 
-            String txFact = System.getProperty(
-                    "javax.xml.transform.TransformerFactory");
+            //String txFact = System.getProperty(
+            //        "javax.xml.transform.TransformerFactory");
 
 
             try
             {
-                System.setProperty("javax.xml.transform.TransformerFactory",
-                    "net.sf.saxon.TransformerFactoryImpl");
+               // System.setProperty("javax.xml.transform.TransformerFactory",
+               //     "net.sf.saxon.TransformerFactoryImpl");
 
-                TransformerFactory tfactory = TransformerFactory.newInstance();
+                TransformerFactory tfactory =  net.sf.saxon.TransformerFactoryImpl.newInstance(); // TransformerFactory.newInstance();
 
                 tTemplate = tfactory.newTemplates((new StreamSource(
                                 xsltStyleSheet.getInputStream())));
@@ -121,7 +121,7 @@ public class XSLTTransformStep implements CumulativeTransformStep
             }
             finally
             {
-
+/*
                 if (txFact == null)
                 {
                     System.clearProperty("javax.xml.transform.TransformerFactory");
@@ -131,7 +131,7 @@ public class XSLTTransformStep implements CumulativeTransformStep
                     System.setProperty("javax.xml.transform.TransformerFactory",
                         txFact);
                 }
-
+*/
             }
         }
 
