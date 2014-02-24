@@ -16,11 +16,28 @@ DocumentTransformer
 ======================================================================================
 
 Used to run document based transformation chains. Currently supports Serial Transformation
-and Cumulative Transformations
+and Cumulative Transformations and Merge Transformations
 
 ======================================================================================
  Change History:
 ======================================================================================
+
+Version 1.12 ---------------------------------------
+
+  o   Direct access to the Saxon Parser for XLST 2.0
+
+
+Version 1.11 ---------------------------------------
+
+  o   Fix Transform error
+
+
+Version 1.10 ---------------------------------------
+
+  o   Now Supports MergeTransformations
+
+  o   CumlativeTransform now passing IT
+
 
 Version 1.9 ----------------------------------------
 

@@ -37,54 +37,136 @@
  *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, * EVEN IF
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
- * *************************************************************************************************************/
+ * *************************************************************************************************************
+ */
 package org.socraticgrid.documenttransformer;
 
+import org.apache.commons.io.IOUtils;
 
-import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
-import java.util.Map;
-import java.util.Properties;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.transform.stream.StreamSource;
+
 
 /**
- * 
+ * Provides a mapping between names and input streams.
  *
  * @author  Jerry Goodnough
  */
-public class CumlativeTransformer
+public class TransformInput
 {
-    private static final Logger logger = Logger.getLogger(CumlativeTransformer.class
+    private static final Logger logger = Logger.getLogger(TransformInput.class
             .getName());
-    private Map<String, CumulativePipeline> transformPipeline;
+    private String baseStreamName;
+    private StreamSource defaultStream = null;
+    private byte[] defStreamArray;
+    private HashMap<String, StreamSource> streamMap = new HashMap<>();
 
-    // Factory Initialization Transfomation static {
-    // System.setProperty("javax.xml.transform.TransformerFactory",
-    // "net.sf.saxon.TransformerFactoryImpl"); }
-    public void setTransformPipeline(
-        Map<String, CumulativePipeline> transformPipeline)
+    public TransformInput()
     {
-        this.transformPipeline = transformPipeline;
     }
 
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr, InputStream baseStream,
-        Properties props)
+    public void clear()
     {
-        InputStream out = null;
+        streamMap.clear();
+    }
 
-        if (transformPipeline.containsKey(pipeline))
+    public boolean containsStream(String name)
+    {
+        return streamMap.containsKey(name);
+    }
+
+    /**
+     * Get the value of baseStream.
+     *
+     * @return  the value of baseStream
+     */
+    public StreamSource getBaseStream()
+    {
+        return this.getStream(baseStreamName);
+    }
+
+    /**
+     * Get the value of baseStreamName.
+     *
+     * @return  the value of baseStreamName
+     */
+    public String getBaseStreamName()
+    {
+        return baseStreamName;
+    }
+
+    /**
+     * Get the value of defaultStream.
+     *
+     * @return  the value of defaultStream
+     */
+    public StreamSource getDefaultStream()
+    {
+        return defaultStream;
+    }
+
+    public byte[] getDefaultStreamAsByteArray()
+    {
+        logger.fine("Getting default Stream");
+
+        if (defStreamArray == null)
         {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,baseStream,
-                    props);
+
+            try
+            {
+                defStreamArray = IOUtils.toByteArray(defaultStream.getInputStream());
+            }
+            catch (IOException ex)
+            {
+                logger.log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return defStreamArray;
+    }
+
+    public StreamSource getStream(String name)
+    {
+
+        if (streamMap.containsKey(name))
+        {
+            return streamMap.get(name);
         }
         else
         {
-            logger.log(Level.WARNING, "{0} not found in transformer", pipeline);
+            return new StreamSource(new ByteArrayInputStream(
+                        getDefaultStreamAsByteArray()));
         }
+    }
 
-        return out;
+    /**
+     * Set the value of baseStreamName.
+     *
+     * @param  baseStreamName  new value of baseStreamName
+     */
+    public void setBaseStreamName(String baseStreamName)
+    {
+        this.baseStreamName = baseStreamName;
+    }
+
+    /**
+     * Set the value of defaultStream.
+     *
+     * @param  defaultStream  new value of defaultStream
+     */
+    public void setDefaultStream(StreamSource defaultStream)
+    {
+        this.defaultStream = defaultStream;
+    }
+
+    public void setStream(String name, StreamSource stream)
+    {
+        streamMap.put(name, stream);
     }
 }

@@ -1,5 +1,5 @@
 /*-
- *
+ * 
  * *************************************************************************************************************
  *  Copyright (C) 2013 by Cognitive Medical Systems, Inc
  *  (http://www.cognitivemedciine.com) * * Licensed under the Apache License,
@@ -11,7 +11,7 @@
  *  KIND, either express or implied. * See the License for the specific language
  *  governing permissions and limitations under the License. *
  * *************************************************************************************************************
- *
+ * 
  * *************************************************************************************************************
  *  Socratic Grid contains components to which third party terms apply. To comply
  *  with these terms, the following * notice is provided: * * TERMS AND
@@ -37,47 +37,45 @@
  *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, * EVEN IF
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
- * *************************************************************************************************************/
+ * *************************************************************************************************************
+ */
 package org.socraticgrid.documenttransformer;
 
-
 import java.io.InputStream;
-
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import org.socraticgrid.documenttransformer.interfaces.MultipleInputPipeline;
 
 /**
- * 
  *
- * @author  Jerry Goodnough
+ * @author Jerry Goodnough
  */
-public class CumlativeTransformer
+public class MergeTransformer
 {
-    private static final Logger logger = Logger.getLogger(CumlativeTransformer.class
+        private static final Logger logger = Logger.getLogger(MergeTransformer.class
             .getName());
-    private Map<String, CumulativePipeline> transformPipeline;
+        
+     private Map<String, MultipleInputPipeline> transformPipeline;
 
     // Factory Initialization Transfomation static {
     // System.setProperty("javax.xml.transform.TransformerFactory",
     // "net.sf.saxon.TransformerFactoryImpl"); }
     public void setTransformPipeline(
-        Map<String, CumulativePipeline> transformPipeline)
+        Map<String, MultipleInputPipeline> transformPipeline)
     {
         this.transformPipeline = transformPipeline;
     }
-
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr, InputStream baseStream,
+       
+    public InputStream transformAsStream(String pipeline, TransformInput inStr,
         Properties props)
     {
         InputStream out = null;
 
         if (transformPipeline.containsKey(pipeline))
         {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,baseStream,
+            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,
                     props);
         }
         else
@@ -87,4 +85,5 @@ public class CumlativeTransformer
 
         return out;
     }
+
 }

@@ -1,130 +1,131 @@
 /*
- * To change this template, choose Tools | Templates and open the template in the
- * editor.
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package org.socraticgrid.documenttransformer;
-
-import org.apache.commons.io.IOUtils;
-
-import org.socraticgrid.documenttransformer.interfaces.CumulativeTransformStep;
-import org.socraticgrid.documenttransformer.interfaces.DualSourcePipeline;
-
-
-import org.springframework.core.io.Resource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
+import org.apache.commons.io.IOUtils;
+import org.socraticgrid.documenttransformer.interfaces.MultipleInputPipeline;
+import org.socraticgrid.documenttransformer.interfaces.MultipleInputTransformStep;
+import org.springframework.core.io.Resource;
 
 /**
- * The Cumulative Pipeline operates by providing each step with the original input
- * (unless swapped by a step) and the output of the prior step to.
- *
- * @author  Jerry Goodnough
+ * The MergePipeline Pipeline operates by providing each step with the
+ * original input (unless swapped by a step) and the output of the prior step
+ * @author Jerry Goodnough
  */
-public class CumulativePipeline implements DualSourcePipeline
+public class MergePipeline implements MultipleInputPipeline
 {
-    private static final Logger logger = Logger.getLogger(CumulativePipeline.class
-            .getName());
-    private Resource BaseTemplate;
-    private List<CumulativeTransformStep> transformChain;
+    private static final Logger logger = Logger.getLogger(MergePipeline.class.getName());
+    private List<MultipleInputTransformStep> transformChain;
 
     /**
-     * Get the value of BaseTemplate.
+     * Get the value of transformChain
      *
-     * @return  the value of BaseTemplate
+     * @return the value of transformChain
      */
-    public Resource getBaseTemplate()
-    {
-        return BaseTemplate;
-    }
-
-    /**
-     * Get the value of transformChain.
-     *
-     * @return  the value of transformChain
-     */
-    public List<CumulativeTransformStep> getTransformChain()
+    public List<MultipleInputTransformStep> getTransformChain()
     {
         return transformChain;
     }
 
     /**
-     * Set the value of BaseTemplate.
+     * Set the value of transformChain
      *
-     * @param  BaseTemplate  new value of BaseTemplate
+     * @param transformChain new value of transformChain
      */
-    public void setBaseTemplate(Resource BaseTemplate)
-    {
-        this.BaseTemplate = BaseTemplate;
-    }
-
-    /**
-     * Set the value of transformChain.
-     *
-     * @param  transformChain  new value of transformChain
-     */
-    public void setTransformChain(List<CumulativeTransformStep> TransformChain)
+    public void setTransformChain(List<MultipleInputTransformStep> TransformChain)
     {
         this.transformChain = TransformChain;
     }
 
-    @Override
-    public InputStream transformAsInputStream(InputStream inStream,
-        InputStream baseStream, Properties props)
+    private Resource defaultSource;
+
+    /**
+     * Get the value of defaultSource
+     *
+     * @return the value of defaultSource
+     */
+    public Resource getDefaultSource()
     {
-        ByteArrayOutputStream outResultStream = this.internalTransform(inStream,
-                baseStream, props);
+        return defaultSource;
+    }
+
+    /**
+     * Set the value of defaultSource
+     *
+     * @param defaultSource new value of defaultSource
+     */
+    public void setDefaultSource(Resource DefaultSource)
+    {
+        this.defaultSource = DefaultSource;
+    }
+    
+
+
+    public InputStream transformAsInputStream(TransformInput in, Properties props)
+    {
+        ByteArrayOutputStream outResultStream = this.internalTransform( in, props);
 
         return (outResultStream == null)
             ? null : new ByteArrayInputStream(outResultStream.toByteArray());
     }
 
-    protected ByteArrayOutputStream internalTransform(InputStream inStream,
-        InputStream baseStr, Properties props)
+    protected ByteArrayOutputStream internalTransform(TransformInput in,
+        Properties props)
     {
         StreamResult result;
         ByteArrayOutputStream outResultStream = null;
         int changes = 0;
-
+        StreamSource src;
+        src = new StreamSource(in.getBaseStream().getInputStream());
+        
         if (transformChain != null)
         {
-
-            Iterator<CumulativeTransformStep> itr = transformChain.iterator();
-            StreamSource src = new StreamSource(inStream);
-            StreamSource base = new StreamSource(baseStr);
-
-            while (itr.hasNext())
+            Iterator<MultipleInputTransformStep> itr = transformChain.iterator();
+            
+            if (this.defaultSource != null)
             {
-                CumulativeTransformStep tx = itr.next();
+                logger.fine("Setting default Stream Source");
+                try
+                {
+                    in.setDefaultStream(new StreamSource(defaultSource.getInputStream()));
+                }
+                catch (IOException ex)
+                {
+                    logger.log(Level.SEVERE, null, ex);
+                }
+            }
+           while (itr.hasNext())
+            {
+                MultipleInputTransformStep tx = itr.next();
 
                 // FUTURE: Provide Parameterz
                 ByteArrayOutputStream resultStream = new ByteArrayOutputStream();
                 result = new StreamResult(resultStream);
-
+                
                 try
                 {
-                    boolean changed = tx.transform(src, base, result, props);
+                    boolean changed = tx.transform(src, in, result, props);
                     outResultStream = resultStream;
 
-                    if (Logger.getLogger(
-                                javax.xml.transform.Transformer.class.getName())
-                            .isLoggable(Level.FINEST))
+                    if (Logger.getLogger(javax.xml.transform.Transformer.class.getName()).isLoggable(
+                                Level.FINEST))
                     {
-                        Logger.getLogger(javax.xml.transform.Transformer.class
-                            .getName()).log(Level.FINEST, result.toString());
+                        Logger.getLogger(javax.xml.transform.Transformer.class.getName()).log(
+                            Level.FINEST, result.toString());
                     }
 
                     // Count Changes
@@ -177,15 +178,15 @@ public class CumulativePipeline implements DualSourcePipeline
         if (changes == 0)
         {
 
-            if (inStream.markSupported())
+            if (src.getInputStream().markSupported())
             {
 
                 try
                 {
                     logger.fine("No changes occured in transfornm - copying input");
-                    inStream.reset();
+                    src.getInputStream().reset();
                     outResultStream = new ByteArrayOutputStream();
-                    IOUtils.copyLarge(inStream, outResultStream);
+                    IOUtils.copyLarge(src.getInputStream(), outResultStream);
                 }
                 catch (IOException ex)
                 {
@@ -203,4 +204,5 @@ public class CumulativePipeline implements DualSourcePipeline
 
         return outResultStream;
     }
+    
 }

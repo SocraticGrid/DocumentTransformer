@@ -74,16 +74,17 @@ public class XSLTTransformStep implements SimpleTransformStep
         {
 
 
-            String txFact = System.getProperty(
-                    "javax.xml.transform.TransformerFactory");
+           // String txFact = System.getProperty(
+           //        "javax.xml.transform.TransformerFactory");
 
 
             try
             {
-                System.setProperty("javax.xml.transform.TransformerFactory",
-                    "net.sf.saxon.TransformerFactoryImpl");
+                //System.setProperty("javax.xml.transform.TransformerFactory",
+                //    "net.sf.saxon.TransformerFactoryImpl");
 
-                TransformerFactory tfactory = TransformerFactory.newInstance();
+        
+                TransformerFactory tfactory =  net.sf.saxon.TransformerFactoryImpl.newInstance(); //TransformerFactory.newInstance();
 
                 tTemplate = tfactory.newTemplates((new StreamSource(
                                 xsltStyleSheet.getInputStream())));
@@ -96,6 +97,7 @@ public class XSLTTransformStep implements SimpleTransformStep
             }
             finally
             {
+                /*
 
                 if (txFact == null)
                 {
@@ -106,7 +108,7 @@ public class XSLTTransformStep implements SimpleTransformStep
                     System.setProperty("javax.xml.transform.TransformerFactory",
                         txFact);
                 }
-
+*/
             }
         }
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+          http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.1.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd" xmlns:aop="http://www.springframework.org/schema/aop">
+   
+    <context:annotation-config/>
+
+
+    <bean name="CDSInputMerge" class="org.socraticgrid.documenttransformer.multipleinputtransfomsteps.XSLTTransformStep">
+        <property name="xsltStyleSheet">
+            <bean class="org.springframework.core.io.ClassPathResource">
+                <constructor-arg value="CDSInputMerge.xslt"/>          
+            </bean>
+        </property>
+    </bean>
+  
+    <bean name="CDSInputMergePipeline" class="org.socraticgrid.documenttransformer.MergePipeline">
+        <property name="defaultSource">
+            <bean class="org.springframework.core.io.ClassPathResource">
+                <constructor-arg value="vmr_base.xml"/>          
+            </bean>
+        </property>
+        <property name="transformChain">
+            <list>
+                <ref bean="CDSInputMerge" />
+            </list>
+        </property>
+    </bean>
+          
+
+    <bean name="MergeXform" class="org.socraticgrid.documenttransformer.MergeTransformer">
+        <property name="transformPipeline">
+            <map>
+                <entry key="vmr" value-ref="CDSInputMergePipeline"/>
+            </map>
+        </property>
+    </bean>
+    
+</beans>

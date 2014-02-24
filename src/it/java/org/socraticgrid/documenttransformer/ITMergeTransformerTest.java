@@ -37,54 +37,116 @@
  *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
  *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, * EVEN IF
  *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. * * END OF TERMS AND CONDITIONS *
- * *************************************************************************************************************/
+ * *************************************************************************************************************
+ */
 package org.socraticgrid.documenttransformer;
 
+import org.apache.commons.io.IOUtils;
 
+import org.junit.After;
+import org.junit.AfterClass;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import org.junit.runner.RunWith;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import org.springframework.context.ApplicationContext;
+
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.io.IOException;
 import java.io.InputStream;
 
-import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.transform.stream.StreamSource;
+
 
 /**
- * 
+ * DOCUMENT ME!
  *
  * @author  Jerry Goodnough
  */
-public class CumlativeTransformer
+// ApplicationContext will be loaded from "/applicationContext.xml" and
+// "/applicationContext-test.xml" in the root of the classpath
+@ContextConfiguration(locations = { "classpath:ITTest-MergeDocumentTransformer.xml" }
+)
+@RunWith(SpringJUnit4ClassRunner.class)
+public class ITMergeTransformerTest
 {
-    private static final Logger logger = Logger.getLogger(CumlativeTransformer.class
-            .getName());
-    private Map<String, CumulativePipeline> transformPipeline;
+    private static final Logger logger = Logger.getLogger(
+            ITMergeTransformerTest.class.getName());
+    @Autowired
+    ApplicationContext ctx;
+    @Autowired
+    @Qualifier("MergeXform")
+    private MergeTransformer transformer;
 
-    // Factory Initialization Transfomation static {
-    // System.setProperty("javax.xml.transform.TransformerFactory",
-    // "net.sf.saxon.TransformerFactoryImpl"); }
-    public void setTransformPipeline(
-        Map<String, CumulativePipeline> transformPipeline)
+    public ITMergeTransformerTest()
     {
-        this.transformPipeline = transformPipeline;
     }
 
-
-    public InputStream transformAsStream(String pipeline, InputStream inStr, InputStream baseStream,
-        Properties props)
+    @BeforeClass
+    public static void setUpClass()
     {
-        InputStream out = null;
+    }
 
-        if (transformPipeline.containsKey(pipeline))
-        {
-            out = transformPipeline.get(pipeline).transformAsInputStream(inStr,baseStream,
-                    props);
-        }
-        else
-        {
-            logger.log(Level.WARNING, "{0} not found in transformer", pipeline);
-        }
+    @AfterClass
+    public static void tearDownClass()
+    {
+    }
 
-        return out;
+    @Before
+    public void setUp()
+    {
+    }
+
+    @After
+    public void tearDown()
+    {
+    }
+
+    /**
+     * Test of transformAsStream method, of class MergeTransformer.
+     */
+    @Test
+    public void testTransformAsStream() throws IOException
+    {
+        logger.info("transformAsStream");
+
+        String pipeline = "vmr";
+        TransformInput inStr = new TransformInput();
+        inStr.setBaseStreamName("demographics");
+
+        Resource demographics = new ClassPathResource("vmr_demographics.xml");
+        inStr.setStream("demographics",
+            new StreamSource(demographics.getInputStream()));
+
+        Resource labs = new ClassPathResource("vmr_labs.xml");
+        inStr.setStream("labs", new StreamSource(labs.getInputStream()));
+
+        Properties props = null;
+        InputStream result = transformer.transformAsStream(pipeline, inStr, props);
+        assertNotNull(result);
+
+        String sResult = IOUtils.toString(result, "UTF-8");
+
+        if (logger.isLoggable(Level.FINE))
+        {
+            logger.fine(sResult);
+        }
     }
 }
