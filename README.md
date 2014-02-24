@@ -16,7 +16,7 @@ DocumentTransformer
 ======================================================================================
 
 Used to run document based transformation chains. Currently supports Serial Transformation
-and Cumulative Transformations
+and Cumulative Transformations and Merge Transformations
 
 ======================================================================================
  Change History:
